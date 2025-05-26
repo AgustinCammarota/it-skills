@@ -1,10 +1,10 @@
 :root {
   /* Colors */
-  --lightest-color: #EDF3F5;
-  --lighter-color: #B7CDD8;
-  --light-color: #81A8BA;
-  --primary-color: #4B829D;
-  --dark-color: #355B6E;
+  --lightest-color: #edf3f5;
+  --lighter-color: #b7cdd8;
+  --light-color: #81a8ba;
+  --primary-color: #4b829d;
+  --dark-color: #355b6e;
   --darker-color: #26414f;
   --darkest-color: #0e1619;
 
@@ -38,9 +38,12 @@ html {
 }
 body {
   width: 100%;
+  height: 100%;
   max-width: 1400px;
   margin: 0 auto;
+  background-color: var(--lightest-color);
   font-size: var(--fs-base);
+  overflow-x: hidden;
 }
 h1 {
   font-size: var(--fs-xl);

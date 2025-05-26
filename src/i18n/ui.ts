@@ -20,4 +20,4 @@ export const LANGUAGES = {
   es: Language.es,
 };
 
-export const ROUTES: string[] = ["about"];
+export const ROUTES: string[] = ["about", "solutions", "careers", "contact"];

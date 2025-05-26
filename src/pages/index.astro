@@ -1,10 +1,11 @@
 ---
-import Layout from "../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
+import AboutBanner from "@components/AboutBanner.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout title="It Skills" description="It Skills" keywords="it-skills">
-    <h1>Hola desde IT Skills</h1>
+<Layout title="It Skills" description="IT Skills" keywords="it-skills">
+  <section class="about-section">
+      <AboutBanner/>
+  </section>
 </Layout>

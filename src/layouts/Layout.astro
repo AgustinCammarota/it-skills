@@ -3,6 +3,7 @@ import "../styles/global.css";
 import { Font } from "astro:assets";
 import { ClientRouter } from "astro:transitions";
 import { getLangFromUrl } from "@i18n/utils";
+import Header from "@components/Header.astro";
 
 interface Props {
   title: string;
@@ -36,9 +37,9 @@ Astro.response.headers.set(
     <title>{title}</title>
   </head>
   <body>
-    <header></header>
+    <Header />
 
-    <main transition:animate="slide">
+    <main transition:animate="fade">
       <slot />
     </main>
 
