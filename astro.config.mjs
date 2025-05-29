@@ -67,8 +67,8 @@ export default defineConfig({
     clientPrerender: true,
     fonts: [
       {
-        provider: fontProviders.google(),
-        weights: ["100 700", "bold"],
+        provider: fontProviders.fontsource(),
+        weights: ["100 800", "bold"],
         styles: ["normal", "italic"],
         fallbacks: ["sans-serif"],
         name: "Comfortaa",

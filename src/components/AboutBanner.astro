@@ -1,76 +1,93 @@
 ---
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import { getImage } from "astro:assets";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const optimizedBackground = await getImage({
+  src: "/src/assets/images/about.webp",
+  width: 1437,
+  height: 645,
+  format: "webp",
+});
 ---
 
-<section class="about-banner-section">
-    <div class="about-banner-content">
-        <h1 class="about-banner-title">
-          {t('about.banner.title')}
-        </h1>
-        <h2 class="about-banner-subtitle">
-          {t('about.banner.subtitle')}
-        </h2>
-        <h3 class="about-banner-description">
-          {t('about.banner.description')}
-        </h3>
-        <a class="about-banner-link" href="/solutions" title={t('about.banner.link')}>
-          {t('about.banner.link')}
-        </a>
-    </div>
+<section
+  class="about-banner-section"
+  style={`background-image: url(${optimizedBackground.src});`}
+>
+  <div class="about-banner-content">
+    <h1 class="about-banner-title">
+      {t("about.banner.title")}
+    </h1>
+    <h2 class="about-banner-subtitle">
+      {t("about.banner.subtitle")}
+    </h2>
+    <h3 class="about-banner-description">
+      {t("about.banner.description")}
+    </h3>
+    <a
+      class="about-banner-link"
+      href="/solutions"
+      title={t("about.banner.link")}
+    >
+      {t("about.banner.link")}
+    </a>
+  </div>
 </section>
 
 <style>
-    .about-banner-section {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        position: relative;
-        background-image: url("/src/assets/images/about.webp");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-    .about-banner-content {
-        width: 100%;
-        height: auto;
-        padding: 48px 24px;
-        background-color: rgb(242 245 255 / 65%);
-    }
-    .about-banner-title {
-        margin: 0;
-        line-height: 34px;
-        font-weight: 600;
-        color: var(--darkest-color);
-        text-wrap: balance;
-    }
-    .about-banner-subtitle {
-        margin: 24px 0;
-        font-style: italic;
-        background: linear-gradient(
-                176deg,
-                var(--light-color),
-                var(--primary-color),
-                var(--darkest-color)
-        );
-        background-clip: text;
-        color: transparent;
-        font-weight: 600;
-    }
-    .about-banner-description {
-        text-wrap: balance;
-        font-weight: 200;
-        color: var(--darkest-color);
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-    }
-    .about-banner-link {
-        display: inline-block;
-        margin-top: 12px;
-        padding: 8px 16px;
-        border-radius: 8px;
-        background: linear-gradient( 90deg, var(--light-color), var(--primary-color), var(--dark-color));
-        color: var(--lightest-color);
-        font-weight: 600;
-    }
+  .about-banner-section {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .about-banner-content {
+    width: 100%;
+    height: auto;
+    padding: 42px 24px;
+    background-color: rgb(242 245 255 / 65%);
+  }
+  .about-banner-title {
+    margin: 0;
+    line-height: 34px;
+    color: var(--darkest-color);
+    text-wrap: balance;
+  }
+  .about-banner-subtitle {
+    margin: 24px 0;
+    font-style: italic;
+    background: linear-gradient(
+      176deg,
+      var(--light-color),
+      var(--primary-color),
+      var(--darkest-color)
+    );
+    background-clip: text;
+    color: transparent;
+    font-weight: 600;
+  }
+  .about-banner-description {
+    text-wrap: wrap;
+    font-weight: 200;
+    color: var(--darkest-color);
+  }
+  .about-banner-link {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: linear-gradient(
+      90deg,
+      var(--light-color),
+      var(--primary-color),
+      var(--dark-color)
+    );
+    color: var(--lightest-color);
+    font-weight: 600;
+  }
 </style>

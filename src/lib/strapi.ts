@@ -1,5 +1,3 @@
-import { loadEnv } from "vite";
-
 interface Props {
   endpoint: string;
   query?: Record<string, string>;

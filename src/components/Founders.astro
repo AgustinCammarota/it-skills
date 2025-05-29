@@ -1,0 +1,91 @@
+---
+import { getCollection } from "astro:content";
+import { getImage } from "astro:assets";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import FounderCard from "@components/FounderCard.svelte";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const founders = await getCollection("founders", ({ id }: { id: string }) => {
+  return id.startsWith(`${lang}/`);
+});
+
+const sortFounders = founders.sort((a, b) => a.data.order - b.data.order);
+
+const optimizeFounder = await Promise.all(
+  sortFounders.map(async (founder) => ({
+    ...founder,
+    data: {
+      ...founder.data,
+      optimizeImage: await getImage({
+        src: founder.data.image.src,
+        alt: founder.data.image.alt,
+        format: "webp",
+        height: 150,
+        width: 150,
+        quality: "high",
+        fit: "cover",
+        position: "center",
+      }),
+    },
+  })),
+);
+---
+
+<section class="founders-section">
+  <h2 class="founders-section-title">{t("founders.section.title")}</h2>
+
+  <div class="founders-container">
+    {
+      optimizeFounder.map((founder) => (
+        <FounderCard
+          name={founder.data.name}
+          role={founder.data.role}
+          link={founder.data.link}
+          linkTitle={founder.data.linkTitle}
+          imageConfig={founder.data.optimizeImage}
+          client:load
+        />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .founders-section {
+    width: 100%;
+    height: auto;
+    position: relative;
+    padding: 42px 0;
+  }
+  .founders-section-title {
+    margin: 40px 0 48px 0;
+    padding-bottom: 8px;
+    text-wrap: wrap;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 200;
+    color: var(--darkest-color);
+    border-bottom: 2px solid var(--lightest-color);
+  }
+  .founders-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    gap: 24px;
+  }
+  .founders-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      to top,
+      var(--lighter-color) 90%,
+      transparent 100%
+    );
+  }
+</style>

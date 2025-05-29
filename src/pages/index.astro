@@ -1,11 +1,16 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import AboutBanner from "@components/AboutBanner.astro";
+import Highlights from "@components/Highlights.svelte";
+import Founders from "@components/Founders.astro";
 
+const currentUrl: URL = Astro.url;
 ---
 
 <Layout title="It Skills" description="IT Skills" keywords="it-skills">
   <section class="about-section">
-      <AboutBanner/>
+    <AboutBanner />
+    <Highlights currentUrl={currentUrl} client:load />
+    <Founders />
   </section>
 </Layout>

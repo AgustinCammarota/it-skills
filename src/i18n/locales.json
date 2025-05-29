@@ -10,7 +10,16 @@
     "about.banner.title": "¿Buscás contratar talento de primer nivel en todo el mundo?",
     "about.banner.subtitle": "Nosotros te ayudamos",
     "about.banner.description": "Somos una agencia boutique de Recursos Humanos que está redefiniendo la Adquisición de Talento con un enfoque humano y estratégico",
-    "about.banner.link": "Más información"
+    "about.banner.link": "Más información",
+    "highlight.founded.title": "IT Skills fue fundada en",
+    "highlight.founded.subtitle": "en Buenos Aires, Argentina",
+    "highlight.operating.title": "Operando de manera",
+    "highlight.operating.number": "remota",
+    "highlight.operating.subtitle": "desde nuestros inicios",
+    "highlight.companies.title": "Ayudamos a más de",
+    "highlight.companies.number": "corporaciones",
+    "highlight.companies.subtitle": "a construir sus equipos",
+    "founders.section.title": "Nuestros Líderes"
   },
   "en": {
     "navbar.menu.option": "Menu",
@@ -23,6 +32,15 @@
     "about.banner.title": "Looking to hire top-tier talent worldwide?",
     "about.banner.subtitle": "We’ve got you covered",
     "about.banner.description": "We're a boutique consulting agency redefining Talent Acquisition with a human and strategic approach",
-    "about.banner.link": "Learn more"
+    "about.banner.link": "Learn more",
+    "highlight.founded.title": "IT Skills was founded in",
+    "highlight.founded.subtitle": "in Buenos Aires, Argentina",
+    "highlight.operating.title": "Operating",
+    "highlight.operating.number": "remotely",
+    "highlight.operating.subtitle": "since we started",
+    "highlight.companies.title": "Helped",
+    "highlight.companies.number": "companies",
+    "highlight.companies.subtitle": "build their teams",
+    "founders.section.title": "Our Leaders"
   }
 }

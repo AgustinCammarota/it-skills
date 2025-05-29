@@ -98,7 +98,6 @@
         justify-content: space-between;
         align-items: center;
         padding: 16px;
-        border-bottom: 1px solid var(--lighter-color);
     }
     .aside-container {
         width: 100%;
@@ -116,6 +115,7 @@
         padding-top: 12px;
         background-color: var(--lightest-color);
         pointer-events: visible;
+        border-top: 1px solid var(--lighter-color);
     }
     .option-list-item {
         padding: 4px 16px;

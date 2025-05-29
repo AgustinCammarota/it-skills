@@ -25,7 +25,6 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
     "astro": "astro",
     "prettier": "npx prettier . --write",
     "lint": "eslint \"src/**/*.{ts,tsx,js,astro}\""
