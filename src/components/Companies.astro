@@ -1,0 +1,91 @@
+---
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import type { Company } from "@interfaces/company.interface";
+import CompanyCard from "@components/CompanyCard.svelte";
+import Globant from "@assets/icons/globant-logo.svg?raw";
+import Continental from "@assets/icons/continental-logo.svg?raw";
+import Prosegur from "@assets/icons/prosegur-logo.svg?raw";
+import Salentein from "@assets/icons/salentein-logo.svg?raw";
+import Tuv from "@assets/icons/tuv-logo.svg?raw";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const companies: Company[] = [
+  {
+    name: "Globant",
+    link: "https://www.globant.com/",
+    icon: Globant,
+  },
+  {
+    name: "Continental",
+    link: "https://www.continental-tires.com/ar/es/",
+    icon: Continental,
+  },
+  {
+    name: "Prosegur",
+    link: "https://www.prosegur.com.ar/",
+    icon: Prosegur,
+  },
+  {
+    name: "Salentein",
+    link: "https://www.bodegasalentein.com/",
+    icon: Salentein,
+  },
+  {
+    name: "Tuv",
+    link: "https://www.tuv.com/argentina/es/",
+    icon: Tuv,
+  },
+];
+---
+
+<section class="companies-section">
+  <h2 class="companies-section-title">
+    {t("companies.section.title")}
+  </h2>
+
+  <div class="companies-container">
+    {
+      companies.map(({ name, link, icon }, index) => (
+        <CompanyCard
+          name={name}
+          link={link}
+          icon={icon}
+          transitionDelay={`0.${index}s`}
+          client:load
+        />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .companies-section {
+    width: 100%;
+    height: 100%;
+    padding: 42px 0;
+  }
+  .companies-section-title {
+    margin: 40px 0 48px 0;
+    padding-bottom: 8px;
+    text-wrap: wrap;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 200;
+    color: var(--darkest-color);
+    border-bottom: 2px solid var(--lighter-color);
+  }
+  .companies-container {
+    width: 100%;
+    height: 100%;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    align-content: center;
+    justify-content: center;
+    justify-items: center;
+    gap: 40px;
+  }
+</style>

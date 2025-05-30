@@ -19,7 +19,8 @@
     "highlight.companies.title": "Ayudamos a más de",
     "highlight.companies.number": "corporaciones",
     "highlight.companies.subtitle": "a construir sus equipos",
-    "founders.section.title": "Nuestros Líderes"
+    "founders.section.title": "Nuestros Líderes",
+    "companies.section.title": "Nuestros Clientes"
   },
   "en": {
     "navbar.menu.option": "Menu",
@@ -41,6 +42,7 @@
     "highlight.companies.title": "Helped",
     "highlight.companies.number": "companies",
     "highlight.companies.subtitle": "build their teams",
-    "founders.section.title": "Our Leaders"
+    "founders.section.title": "Our Leaders",
+    "companies.section.title": "Our Clients"
   }
 }

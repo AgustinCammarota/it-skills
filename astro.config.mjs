@@ -9,7 +9,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://www.my-site.dev",
+  site: "https://itskills.com.ar/",
   output: "static",
   prefetch: {
     defaultStrategy: "hover",

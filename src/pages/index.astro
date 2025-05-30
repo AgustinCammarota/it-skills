@@ -3,6 +3,7 @@ import Layout from "@layouts/Layout.astro";
 import AboutBanner from "@components/AboutBanner.astro";
 import Highlights from "@components/Highlights.svelte";
 import Founders from "@components/Founders.astro";
+import Companies from "@components/Companies.astro";
 
 const currentUrl: URL = Astro.url;
 ---
@@ -12,5 +13,6 @@ const currentUrl: URL = Astro.url;
     <AboutBanner />
     <Highlights currentUrl={currentUrl} client:load />
     <Founders />
+    <Companies />
   </section>
 </Layout>
