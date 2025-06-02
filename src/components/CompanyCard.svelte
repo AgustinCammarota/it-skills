@@ -25,7 +25,7 @@
 </script>
 
 <div class="company-card-container"
-     style="opacity: {opacity}; transition: opacity 1.5s; transition-delay: {transitionDelay};"
+     style="opacity: {opacity}; transition-delay: {transitionDelay};"
      bind:this={container}>
     <a class="company-card-link" href={link} title={name} aria-label={name} target="_blank" rel="noopener noreferrer">
         {@html icon}
@@ -36,6 +36,8 @@
     .company-card-container {
         width: 100%;
         height: 100%;
+        max-width: 200px;
+        transition: opacity 1.5s;
     }
     .company-card-link {
         width: 100%;
@@ -43,5 +45,14 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: transform 0.3s ease;
+    }
+    @media (min-width: 768px) {
+        .company-card-link {
+            transform: scale(1);
+        }
+        .company-card-link:hover {
+            transform: scale(1.05);
+        }
     }
 </style>

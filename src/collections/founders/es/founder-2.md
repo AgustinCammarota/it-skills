@@ -1,6 +1,6 @@
 ---
 name: "Luciana Bustos Pagani"
-role: "Head of Talent"
+role: "Gerente de RRHH"
 image:
   alt: "Luciana Bustos Pagani Head of Talent"
   src: "/src/assets/images/luciana-bustos.webp"

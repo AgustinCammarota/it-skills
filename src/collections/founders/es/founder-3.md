@@ -1,6 +1,6 @@
 ---
 name: "Agustín Cammarota"
-role: "Senior Technical Advisor"
+role: "Experto en Tecnología"
 image:
   alt: "Agustín Cammarota Senior Technical Advisor"
   src: "/src/assets/images/agustin-cammarota.webp"

@@ -32,8 +32,8 @@
       if (entry.isIntersecting && !visible) {
         visible = true;
         founded.set(2006);
-        operating.set(100);
-        companies.set(20);
+        operating.set(20);
+        companies.set(30);
         observer.disconnect();
       }
     }, { threshold: 0.5 });
@@ -45,25 +45,25 @@
 <section class="highlights-section" bind:this={container}>
     {#key visible}
         <div class="highlight-container">
-            <h3 class="highlight-title" id="founded">
-                {t('highlight.founded.title')}
+            <h3 class="highlight-text" id="founded">
+                <span class="highlight-title">{t('highlight.founded.title')}</span>
                 <span class="highlight-number">{Math.round(founded.current)}</span>
                 <span class="highlight-subtitle">{t('highlight.founded.subtitle')}</span>
             </h3>
         </div>
 
         <div class="highlight-container" id="operating">
-            <h3 class="highlight-title">
-                {t('highlight.operating.title')}
-                <span class="highlight-number">{Math.round(operating.current)}% {t('highlight.operating.number')}</span>
+            <h3 class="highlight-text">
+                <span class="highlight-title">{t('highlight.operating.title')}</span>
+                <span class="highlight-number">+{Math.round(operating.current)}</span>
                 <span class="highlight-subtitle"> {t('highlight.operating.subtitle')}</span>
             </h3>
         </div>
 
         <div class="highlight-container" id="companies">
-            <h3 class="highlight-title">
-                {t('highlight.companies.title')}
-                <span class="highlight-number">{Math.round(companies.current)}+ {t('highlight.companies.number')}</span>
+            <h3 class="highlight-text">
+                <span class="highlight-title">{t('highlight.companies.title')}</span>
+                <span class="highlight-number">+{Math.round(companies.current)}</span>
                 <span class="highlight-subtitle">{t('highlight.companies.subtitle')}</span>
             </h3>
         </div>
@@ -75,7 +75,7 @@
         width: 100%;
         height: auto;
         display: grid;
-        padding: 42px 0;
+        padding: 48px 16px;
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr 1fr;
         justify-content: center;
@@ -83,7 +83,8 @@
         justify-items: center;
         gap: 42px;
     }
-    .highlight-title {
+    .highlight-text {
+        max-width: 300px;
         margin: 0;
         font-weight: 500;
         text-align: center;
@@ -96,7 +97,17 @@
         font-weight: 800;
         color: var(--primary-color);
     }
-    .highlight-subtitle {
+    .highlight-subtitle,
+    .highlight-title {
         display: block;
+    }
+    @media (min-width: 768px) {
+        .highlights-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 64px 16px;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-rows: 1fr;
+        }
     }
 </style>

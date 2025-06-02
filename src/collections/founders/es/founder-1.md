@@ -1,6 +1,6 @@
 ---
 name: "Irina Tavil"
-role: "Founder & Managing Director"
+role: "Fundadora y Directora"
 image:
   alt: "Irina Tavil Founder & Managing Director"
   src: "/src/assets/images/irina-tavil.webp"

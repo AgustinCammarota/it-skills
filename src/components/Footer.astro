@@ -1,0 +1,129 @@
+---
+import CustomIcon from "@components/CustomIcon.astro";
+---
+
+<footer id="footer" class="footer-section">
+  <div class="footer-content">
+    <a class="footer-logo-link" href="/" title="IT Skills">
+      <CustomIcon
+        name="full-logo-alt"
+        label="IT Skills"
+        width="250"
+        height="100"
+      />
+    </a>
+
+    <div class="contact-container">
+      <a
+        class="contact-container-link social-media-link"
+        href="https://www.linkedin.com/company/it-skills-argentina/"
+        title="Linkedin"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <CustomIcon
+          name="linkedin-alt"
+          label="Linkedin"
+          width="32"
+          height="32"
+        />
+        <p class="contact-container-text">IT Skills</p>
+      </a>
+
+      <a
+        class="contact-container-link email-link"
+        href="mailto:info@itskills.com.ar?subject=Consulta&body=Hola!"
+        title="Mail"
+      >
+        <CustomIcon name="mail" label="Email" width="32" height="32" />
+        <p class="contact-container-text">info@itskills.com.ar</p>
+      </a>
+
+      <a
+        class="contact-container-link phone-link"
+        href="https://wa.me/5491138618337?text=Hola%20Luciana%2C%20vi%20tu%20sitio%20web"
+        title="Phone"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <CustomIcon name="phone" label="Telefono" width="32" height="32" />
+        <p class="contact-container-text">+54 9 11 3861-8337</p>
+      </a>
+    </div>
+  </div>
+
+  <p class="copyright">© 2025 IT Skills. All Rights Reserved.</p>
+</footer>
+
+<style>
+  .footer-section {
+    width: 100%;
+    height: auto;
+    background-color: var(--primary-color);
+  }
+  .footer-content {
+    width: 100%;
+    height: auto;
+    padding: 48px 16px;
+  }
+  .footer-logo-link,
+  .contact-container-link {
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+    color: var(--lightest-color);
+  }
+  .contact-container-link:last-of-type {
+    margin-bottom: 0;
+  }
+  .contact-container-text {
+    margin: 0;
+    font-weight: 500;
+  }
+  .copyright {
+    padding: 8px;
+    margin: 0;
+    line-height: 16px;
+    text-align: center;
+    font-size: var(--fs-sm);
+    color: var(--lightest-color);
+    font-weight: 200;
+  }
+  @media (min-width: 768px) {
+    .footer-content {
+      padding: 24px 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .footer-logo-link {
+      margin: 0;
+    }
+    .footer-logo-link {
+      svg {
+        width: 300px;
+        height: 100px;
+      }
+    }
+    .contact-container {
+      margin-top: 16px;
+    }
+    .contact-container-link {
+      margin-bottom: 24px;
+      gap: 12px;
+      transform: scale(1);
+      transition: transform 0.3s ease;
+      svg {
+        width: 34px;
+        height: 34px;
+      }
+    }
+    .contact-container-link:hover {
+      transform: scale(1.03);
+    }
+  }
+</style>

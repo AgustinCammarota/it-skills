@@ -101,7 +101,7 @@
     }
     .aside-container {
         width: 100%;
-        height: 100dvh;
+        height: 100%;
         padding-top: 77px;
         position: absolute;
         left: 0;
@@ -149,5 +149,38 @@
     }
     .option-list-container {
         display: none;
+    }
+    @media (min-width: 768px) {
+        .option-list-container {
+            display: block;
+        }
+        .aside-container,
+        .menu-button {
+            display: none;
+        }
+        .option-list {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 0;
+            border: none;
+        }
+        .option-list-item {
+            padding: 0 12px;
+        }
+        .logo-link-icon {
+            width: 160px;
+            height: 50px;
+        }
+        .option-list-link {
+            transform: scale(1);
+            transition: transform 0.3s ease;
+            font-weight: 700;
+            font-size: var(--fs-base);
+        }
+        .option-list-link:hover {
+            color: var(--primary-color);
+            transform: scale(1.03);
+        }
     }
 </style>

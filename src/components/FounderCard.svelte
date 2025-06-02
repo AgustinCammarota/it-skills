@@ -8,13 +8,15 @@
     role,
     link,
     linkTitle,
-    imageConfig
+    imageConfig,
+    transitionDelay = '0s'
   }: {
     name: string;
     role: string;
     link: string;
     linkTitle: string;
     imageConfig: GetImageResult;
+    transitionDelay: string;
   } = $props();
 
   let container: HTMLElement;
@@ -32,9 +34,10 @@
   });
 </script>
 
-<div class="founder-card-container"
-     style="opacity: {opacity}; transition: opacity 1.5s;"
-     bind:this={container}>
+<a class="founder-card-container"
+   href={link} title={linkTitle} target="_blank" rel="noopener noreferrer"
+   style="opacity: {opacity}; transition-delay: {transitionDelay};"
+   bind:this={container}>
     <img class="founder-card-image"
          src={imageConfig.src}
          srcset={imageConfig.srcSet.attribute}
@@ -54,15 +57,17 @@
     <p class="founder-card-role">
         {role}
     </p>
-    <a class="founder-card-link" href={link} title={linkTitle} target="_blank" rel="noopener noreferrer">
+    <span class="founder-card-icon">
         {@html Linkedin}
-    </a>
-</div>
+    </span>
+</a>
 
 <style>
     .founder-card-container {
-        width: 280px;
-        height: auto;
+        width: 100%;
+        height: 100%;
+        max-width: 350px;
+        min-width: 250px;
         padding: 16px;
         display: flex;
         flex-direction: column;
@@ -70,6 +75,7 @@
         align-items: center;
         background-color: var(--lightest-color);
         border-radius: 16px;
+        transition: opacity 1.5s, transform 0.2s ease;
     }
     .founder-card-image {
         object-fit: var(--fit);
@@ -80,16 +86,36 @@
         margin-top: 8px;
         margin-bottom: 0;
         color: var(--darkest-color);
+        text-align: center;
     }
     .founder-card-role {
         margin: 0;
         line-height: 18px;
         font-weight: 200;
+        text-align: center;
     }
-    .founder-card-link {
+    .founder-card-icon {
         width: 40px;
         height: 40px;
         display: inline-flex;
         margin-top: 8px;
+    }
+    @media (min-width: 768px) {
+        .founder-card-container {
+            justify-content: flex-start;
+            transform: scale(1);
+            gap: 8px;
+        }
+        .founder-card-icon {
+            margin: 0;
+        }
+        .founder-card-container:hover {
+            transform: scale(1.05);
+        }
+    }
+    @media (min-width: 1025px) {
+        .founder-card-container {
+            padding: 40px 16px;
+        }
     }
 </style>

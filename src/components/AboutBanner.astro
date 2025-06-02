@@ -40,7 +40,6 @@ const optimizedBackground = await getImage({
 <style>
   .about-banner-section {
     width: 100%;
-    aspect-ratio: 16 / 9;
     position: relative;
     background-size: cover;
     background-position: center;
@@ -49,7 +48,7 @@ const optimizedBackground = await getImage({
   .about-banner-content {
     width: 100%;
     height: auto;
-    padding: 42px 24px;
+    padding: 48px 24px;
     background-color: rgb(242 245 255 / 65%);
   }
   .about-banner-title {
@@ -89,5 +88,23 @@ const optimizedBackground = await getImage({
     );
     color: var(--lightest-color);
     font-weight: 600;
+  }
+  @media (min-width: 768px) {
+    .about-banner-section {
+      padding: 40px;
+    }
+    .about-banner-content {
+      width: 550px;
+      border-radius: 12px;
+    }
+    .about-banner-link:hover {
+      background: linear-gradient(
+        270deg,
+        var(--lightest-color),
+        var(--lighter-color),
+        var(--light-color)
+      );
+      color: var(--darkest-color);
+    }
   }
 </style>
