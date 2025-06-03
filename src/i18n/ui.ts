@@ -1,12 +1,4 @@
-enum Path {
-  en = "/",
-  es = "/en/",
-}
-
-enum Language {
-  en = "English",
-  es = "Español",
-}
+import { Path, Language } from "@interfaces/routes.interface.ts";
 
 export const defaultLang = "es";
 

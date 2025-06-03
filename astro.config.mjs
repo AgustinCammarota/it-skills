@@ -9,7 +9,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://itskills.com.ar/",
+  site: "https://itskills.com.ar",
   output: "static",
   prefetch: {
     defaultStrategy: "hover",
@@ -55,11 +55,41 @@ export default defineConfig({
       },
     }),
   ],
+  server: {
+    allowedHosts: ["itskills.com.ar", "www.itskills.com.ar"],
+  },
   env: {
     schema: {
-      // STRAPI_URL: envField.string({ context: "client", access: "public", optional: false }),
-      // PORT: envField.number({ context: "server", access: "public", default: 4321 }),
-      // API_SECRET: envField.string({ context: "server", access: "secret" }),
+      PUBLIC_AUTHOR_NAME: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_PAGE_URL: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_COMPANY_NAME: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_COMPANY_EMAIL: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_COMPANY_PHONE: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_COMPANY_LINKEDIN: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
     },
   },
   experimental: {
