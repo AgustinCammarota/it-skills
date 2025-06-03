@@ -1,0 +1,26 @@
+---
+import Layout from "@layouts/Layout.astro";
+import AboutBanner from "@components/AboutBanner.astro";
+import Highlights from "@components/Highlights.svelte";
+import Founders from "@components/Founders.astro";
+import Companies from "@components/Companies.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const currentUrl: URL = Astro.url;
+---
+
+<Layout
+  title={t("about.meta.title")}
+  description={t("about.meta.description")}
+  keywords={t("about.meta.keywords")}
+>
+  <section class="about-section">
+    <AboutBanner />
+    <Highlights currentUrl={currentUrl} client:load />
+    <Founders />
+    <Companies />
+  </section>
+</Layout>
