@@ -60,6 +60,7 @@ export default defineConfig({
       "itskills.com.ar",
       "www.itskills.com.ar",
       "it-skills.netlify.app",
+      "develop--it-skills.netlify.app",
     ],
   },
   env: {
