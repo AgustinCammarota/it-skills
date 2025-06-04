@@ -47,7 +47,8 @@
         justify-content: center;
         transition: transform 0.3s ease;
     }
-    @media (min-width: 768px) {
+
+    @media (width >= 768px) {
         .company-card-link {
             transform: scale(1);
         }

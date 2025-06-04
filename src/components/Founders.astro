@@ -61,7 +61,7 @@ const optimizeFounder = await Promise.all(
     padding: 48px 0;
   }
   .founders-section-title {
-    margin: 40px 0 48px 0;
+    margin: 40px 0 48px;
     padding-bottom: 8px;
     text-wrap: wrap;
     text-align: center;
@@ -75,8 +75,7 @@ const optimizeFounder = await Promise.all(
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr 1fr;
-    justify-items: center;
-    align-items: center;
+    place-items: center center;
     gap: 32px;
   }
   .founders-section::after {
@@ -92,7 +91,8 @@ const optimizeFounder = await Promise.all(
       transparent 100%
     );
   }
-  @media (min-width: 768px) {
+
+  @media (width >= 768px) {
     .founders-section {
       padding: 80px 16px;
     }
@@ -109,7 +109,8 @@ const optimizeFounder = await Promise.all(
       gap: 24px;
     }
   }
-  @media (min-width: 1025px) {
+
+  @media (width >= 1025px) {
     .founders-container {
       gap: 40px;
     }

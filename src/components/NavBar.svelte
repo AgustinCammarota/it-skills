@@ -150,7 +150,8 @@
     .option-list-container {
         display: none;
     }
-    @media (min-width: 768px) {
+
+    @media (width >= 768px) {
         .option-list-container {
             display: block;
         }
