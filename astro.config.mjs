@@ -56,7 +56,11 @@ export default defineConfig({
     }),
   ],
   server: {
-    allowedHosts: ["itskills.com.ar", "www.itskills.com.ar"],
+    allowedHosts: [
+      "itskills.com.ar",
+      "www.itskills.com.ar",
+      "it-skills.netlify.app",
+    ],
   },
   env: {
     schema: {
