@@ -100,7 +100,8 @@
         display: inline-flex;
         margin-top: 8px;
     }
-    @media (min-width: 768px) {
+
+    @media (width >= 768px) {
         .founder-card-container {
             justify-content: flex-start;
             transform: scale(1);
@@ -113,7 +114,8 @@
             transform: scale(1.05);
         }
     }
-    @media (min-width: 1025px) {
+
+    @media (width >= 1025px) {
         .founder-card-container {
             padding: 40px 16px;
         }

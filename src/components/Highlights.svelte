@@ -79,8 +79,7 @@
         grid-template-columns: 1fr;
         grid-template-rows: 1fr 1fr 1fr;
         justify-content: center;
-        align-items: center;
-        justify-items: center;
+        place-items: center center;
         gap: 42px;
     }
     .highlight-text {
@@ -101,7 +100,8 @@
     .highlight-title {
         display: block;
     }
-    @media (min-width: 768px) {
+
+    @media (width >= 768px) {
         .highlights-section {
             max-width: 1100px;
             margin: 0 auto;
