@@ -17,12 +17,6 @@ export default defineConfig({
   },
   image: {
     experimentalLayout: "constrained",
-    domains: [
-      "itskills.com.ar",
-      "www.itskills.com.ar",
-      "it-skills.netlify.app",
-      "develop--it-skills.netlify.app",
-    ],
   },
   i18n: {
     defaultLocale: "es",
@@ -61,14 +55,6 @@ export default defineConfig({
       },
     }),
   ],
-  server: {
-    allowedHosts: [
-      "itskills.com.ar",
-      "www.itskills.com.ar",
-      "it-skills.netlify.app",
-      "develop--it-skills.netlify.app",
-    ],
-  },
   env: {
     schema: {
       PUBLIC_AUTHOR_NAME: envField.string({
