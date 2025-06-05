@@ -34,11 +34,12 @@ jobs:
         with:
           node-version: 20.11.1
 
-      # Get npm cache directory
-      - name: Get npm cache directory
-        id: npm-cache-dir
-        shell: bash
-        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+      # Clean npm cache directory
+      - name: Clean npm cache
+        run: |
+          npm cache clean --force
+          rm -rf node_modules package-lock.json
+          rm -rf .turbo .next dist .tsbuildinfo .eslintcache
 
       # 1) Install dependencies
       - name: Install dependencies
@@ -148,11 +149,12 @@ jobs:
         with:
           node-version: 20.11.1
 
-      # Get npm cache directory
-      - name: Get npm cache directory
-        id: npm-cache-dir
-        shell: bash
-        run: echo "dir=$(npm config get cache)" >> ${GITHUB_OUTPUT}
+      # Clean npm cache directory
+      - name: Clean npm cache
+        run: |
+          npm cache clean --force
+          rm -rf node_modules package-lock.json
+          rm -rf .turbo .next dist .tsbuildinfo .eslintcache
 
       # 1) Install dependencies
       - name: Install dependencies

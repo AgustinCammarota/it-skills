@@ -1,22 +1,22 @@
 <script lang="ts">
   import Linkedin from '@assets/icons/linkedin.svg?raw';
-  import type {GetImageResult} from "astro";
   import { onMount } from 'svelte';
+  import type { Snippet } from 'svelte';
 
   const {
     name,
     role,
     link,
     linkTitle,
-    imageConfig,
-    transitionDelay = '0s'
+    transitionDelay = '0s',
+    image
   }: {
     name: string;
     role: string;
     link: string;
     linkTitle: string;
-    imageConfig: GetImageResult;
     transitionDelay: string;
+    image: Snippet;
   } = $props();
 
   let container: HTMLElement;
@@ -38,19 +38,9 @@
    href={link} title={linkTitle} target="_blank" rel="noopener noreferrer"
    style="opacity: {opacity}; transition-delay: {transitionDelay};"
    bind:this={container}>
-    <img class="founder-card-image"
-         src={imageConfig.src}
-         srcset={imageConfig.srcSet.attribute}
-         loading={imageConfig.attributes.loading}
-         title={imageConfig.attributes.alt}
-         alt={imageConfig.attributes.alt}
-         sizes={imageConfig.attributes.sizes}
-         decoding={imageConfig.attributes.decoding}
-         fetchpriority={imageConfig.attributes.fetchpriority}
-         style={imageConfig.attributes.style}
-         width={imageConfig.attributes.width}
-         height={imageConfig.attributes.height}>
-
+    <div class="founder-card-image">
+        {@render image()}
+    </div>
     <h3 class="founder-card-name">
         {name}
     </h3>
@@ -76,11 +66,6 @@
         background-color: var(--lightest-color);
         border-radius: 16px;
         transition: opacity 1.5s, transform 0.2s ease;
-    }
-    .founder-card-image {
-        object-fit: var(--fit);
-        object-position: var(--pos);
-        border-radius: 50%;
     }
     .founder-card-name {
         margin-top: 8px;
