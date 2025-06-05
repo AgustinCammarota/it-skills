@@ -1,8 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import { getImage } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import FounderCard from "@components/FounderCard.svelte";
+import CustomImage from "@components/CustomImage.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -12,25 +12,6 @@ const founders = await getCollection("founders", ({ id }: { id: string }) => {
 });
 
 const sortFounders = founders.sort((a, b) => a.data.order - b.data.order);
-
-const optimizeFounder = await Promise.all(
-  sortFounders.map(async (founder) => ({
-    ...founder,
-    data: {
-      ...founder.data,
-      optimizeImage: await getImage({
-        src: founder.data.image.src,
-        alt: founder.data.image.alt,
-        format: "webp",
-        height: 150,
-        width: 150,
-        quality: "high",
-        fit: "cover",
-        position: "center",
-      }),
-    },
-  })),
-);
 ---
 
 <section class="founders-section">
@@ -38,16 +19,25 @@ const optimizeFounder = await Promise.all(
 
   <div class="founders-container">
     {
-      optimizeFounder.map((founder, index) => (
+      sortFounders.map(({ data }, index) => (
         <FounderCard
-          name={founder.data.name}
-          role={founder.data.role}
-          link={founder.data.link}
-          linkTitle={founder.data.linkTitle}
-          imageConfig={founder.data.optimizeImage}
+          name={data.name}
+          role={data.role}
+          link={data.link}
+          linkTitle={data.linkTitle}
           transitionDelay={`0.${index}s`}
           client:load
-        />
+        >
+          <CustomImage
+            className="rounded"
+            slot="image"
+            imagePath={data.image.src}
+            altText={data.image.alt}
+            width={150}
+            height={150}
+            quality="high"
+          />
+        </FounderCard>
       ))
     }
   </div>

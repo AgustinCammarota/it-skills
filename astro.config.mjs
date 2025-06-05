@@ -30,7 +30,7 @@ export default defineConfig({
     },
   },
   adapter: netlify({
-    imageCDN: false,
+    imageCDN: true,
     cacheOnDemandPages: true,
     edgeMiddleware: true,
   }),

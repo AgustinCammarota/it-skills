@@ -101,7 +101,7 @@
     }
     .aside-container {
         width: 100%;
-        height: 100%;
+        height: 100dvh;
         padding-top: 77px;
         position: absolute;
         left: 0;
