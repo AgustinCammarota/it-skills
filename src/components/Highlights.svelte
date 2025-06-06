@@ -81,6 +81,7 @@
         justify-content: center;
         place-items: center center;
         gap: 42px;
+        background: var(--lightest-color);
     }
     .highlight-text {
         max-width: 300px;
@@ -103,11 +104,15 @@
 
     @media (width >= 768px) {
         .highlights-section {
-            max-width: 1100px;
-            margin: 0 auto;
             padding: 64px 16px;
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: 1fr;
+        }
+    }
+
+    @media (width >= 1025px) {
+        .highlights-section {
+            padding: 64px 80px;
         }
     }
 </style>

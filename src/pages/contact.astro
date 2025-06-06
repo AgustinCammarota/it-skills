@@ -1,0 +1,15 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={t("about.meta.title")}
+  description={t("about.meta.title")}
+  keywords={t("about.meta.title")}
+>
+  <section class="contact-section"></section>
+</Layout>

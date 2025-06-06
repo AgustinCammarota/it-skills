@@ -1,4 +1,5 @@
 ---
+import { getRelativeLocaleUrl } from "astro:i18n";
 import {
   PUBLIC_COMPANY_NAME,
   PUBLIC_COMPANY_EMAIL,
@@ -17,7 +18,11 @@ const phoneLink = `https://wa.me/${PUBLIC_COMPANY_PHONE}?text=Hola%20Luciana%2C%
 
 <footer id="footer" class="footer-section">
   <div class="footer-content">
-    <a class="footer-logo-link" href="/" title={PUBLIC_COMPANY_NAME}>
+    <a
+      class="footer-logo-link"
+      href={getRelativeLocaleUrl(lang, "/")}
+      title={PUBLIC_COMPANY_NAME}
+    >
       <CustomIcon
         name="full-logo-alt"
         label={PUBLIC_COMPANY_NAME}

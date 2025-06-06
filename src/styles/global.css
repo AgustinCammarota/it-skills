@@ -40,7 +40,7 @@ body {
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-  background-color: var(--lightest-color);
+  background-color: var(--darker-color);
   font-size: var(--fs-base);
   overflow-x: hidden;
 }
@@ -62,7 +62,9 @@ time,
 input,
 label,
 textarea,
+select,
 a {
+  font-family: var(--font-comfortaa), sans-serif;
   font-size: var(--fs-base);
   line-height: var(--lh-loose);
 }

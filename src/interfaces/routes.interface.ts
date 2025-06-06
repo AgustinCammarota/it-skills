@@ -3,12 +3,7 @@ export interface Routes {
   path: string;
 }
 
-export enum Path {
-  en = "/",
-  es = "/en/",
-}
-
 export enum Language {
-  en = "English",
-  es = "Español",
+  en = "EN",
+  es = "ES",
 }
