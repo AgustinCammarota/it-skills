@@ -1,6 +1,9 @@
 <script lang="ts">
+  import { navigate } from 'astro:transitions/client';
+  import { getRelativeLocaleUrl } from "astro:i18n";
   import { fly } from 'svelte/transition';
-  import { getLangFromUrl, useTranslations } from "@i18n/utils";
+  import { getLangFromUrl, useTranslations  } from "@i18n/utils";
+  import { LANGUAGES } from "@i18n/ui.ts";
   import type { Routes } from "@interfaces/routes.interface";
   import Menu from '@assets/icons/menu.svg?raw';
   import Close from '@assets/icons/close.svg?raw';
@@ -16,7 +19,7 @@
   const t = useTranslations(lang);
 
   let isSidebarOpen: boolean = $state(false);
-
+  let selected: 'es' | 'en' = $state(lang);
   let routes: Routes[] = $state.raw([
     {
       name: t('navbar.link.about'),
@@ -35,6 +38,13 @@
       path: "/contact"
     }
   ]);
+  let paths: string[] = $derived(routes.map(route => route.path));
+  let currentLink: string | undefined = $derived(
+    currentUrl.pathname
+    .split("/")
+    .filter(Boolean)
+    .filter((path) => paths.includes(`/${path}`))?.[0]
+  );
 </script>
 
 {#snippet listOptions()}
@@ -42,7 +52,7 @@
         {#each routes as route, index (route.name)}
             <li class="option-list-item" data-index={index}>
                 <a class="option-list-link"
-                   href={route.path}
+                   href={getRelativeLocaleUrl(lang, route.path)}
                    title={route.name}
                    data-astro-prefetch="tap"
                    onclick={() => isSidebarOpen = false}>
@@ -53,10 +63,24 @@
     </ul>
 {/snippet}
 
+{#snippet selectLanguage()}
+    <select class="language-select"
+            name="language"
+            bind:value={selected}
+            onchange={() => navigate(getRelativeLocaleUrl(selected, currentLink ?? '/'))}>
+        <option value="es">
+            &#x1F1EA;&#x1F1F8; {LANGUAGES['es']}
+        </option>
+        <option value="en">
+            &#x1F1FA;&#x1F1F8; {LANGUAGES['en']}
+        </option>
+    </select>
+{/snippet}
+
 <nav class="navbar">
     <section class="logo-section">
         <a class="logo-link"
-           href="/"
+           href={getRelativeLocaleUrl(lang, '/')}
            title={t("navbar.logo.option")}
            data-astro-prefetch="tap"
            onclick={() => isSidebarOpen = false}>
@@ -68,14 +92,19 @@
     </section>
 
     <section class="option-section">
-        <button class="menu-button"
-                type="button"
-                onclick={() => isSidebarOpen = !isSidebarOpen}>
-            <span class="menu-button-icon"
-                  aria-label={isSidebarOpen ? t("navbar.close.option") : t("navbar.menu.option")}>
-                {@html isSidebarOpen ? Close : Menu}
-            </span>
-        </button>
+        <div class="button-container">
+            {@render  selectLanguage()}
+
+            <button class="menu-button"
+                    type="button"
+                    onclick={() => isSidebarOpen = !isSidebarOpen}>
+                <span class="menu-button-icon"
+                      aria-label={isSidebarOpen ? t("navbar.close.option") : t("navbar.menu.option")}>
+                    {@html isSidebarOpen ? Close : Menu}
+                </span>
+            </button>
+        </div>
+
 
         {#if isSidebarOpen}
             <aside class="aside-container" transition:fly>
@@ -85,6 +114,7 @@
 
         <div class="option-list-container">
             {@render listOptions()}
+            {@render selectLanguage()}
         </div>
     </section>
 </nav>
@@ -102,7 +132,7 @@
     .aside-container {
         width: 100%;
         height: 100dvh;
-        padding-top: 77px;
+        padding-top: 75px;
         position: absolute;
         left: 0;
         top: 0;
@@ -136,6 +166,23 @@
         width: 130px;
         height: 40px;
     }
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4px;
+    }
+    .language-select {
+        padding: 6px 1px;
+        border: none;
+        font-size: var(--fs-base);
+        font-weight: 800;
+        background-color: var(--lightest-color);
+        cursor: pointer;
+    }
+    .language-select:focus {
+        outline: none;
+    }
     .menu-button {
         border: none;
         appearance: none;
@@ -153,18 +200,26 @@
 
     @media (width >= 768px) {
         .option-list-container {
-            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .aside-container,
-        .menu-button {
+        .button-container {
             display: none;
         }
         .option-list {
+            margin-right: 12px;
             display: flex;
             justify-content: flex-end;
             align-items: center;
             padding: 0;
             border: none;
+        }
+        .language-select {
+            font-size: var(--fs-sm);
+            border-left: 1px solid var(--darkest-color);
+            padding: 2px 0 2px 16px;
         }
         .option-list-item {
             padding: 0 12px;

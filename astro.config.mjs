@@ -15,9 +15,6 @@ export default defineConfig({
     defaultStrategy: "hover",
     prefetchAll: true,
   },
-  image: {
-    experimentalLayout: "constrained",
-  },
   i18n: {
     defaultLocale: "es",
     locales: ["es", "en"],
