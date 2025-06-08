@@ -9,8 +9,8 @@
       transitionDelay = '0s'
     }: CompanyCard = $props();
 
-    let container: HTMLElement;
     let opacity = $state('0');
+    let container: HTMLElement;
 
     onMount(() => {
       const observer = new IntersectionObserver(([entry]) => {
