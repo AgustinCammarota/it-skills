@@ -56,7 +56,7 @@
     .founder-card-container {
         width: 100%;
         height: 100%;
-        max-width: 350px;
+        max-width: 330px;
         min-width: 230px;
         padding: 16px;
         display: flex;
@@ -88,6 +88,7 @@
 
     @media (width >= 768px) {
         .founder-card-container {
+            height: 340px;
             justify-content: flex-start;
             transform: scale(1);
             gap: 8px;
@@ -102,6 +103,7 @@
 
     @media (width >= 1025px) {
         .founder-card-container {
+            height: 360px;
             padding: 40px 16px;
         }
     }

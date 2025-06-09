@@ -51,7 +51,9 @@
     <ul class="option-list">
         {#each routes as route, index (route.name)}
             <li class="option-list-item" data-index={index}>
-                <a class="option-list-link"
+                <a class={currentUrl.pathname === getRelativeLocaleUrl(lang, route.path)
+                    ? 'option-list-link option-list-link-active'
+                    : 'option-list-link'}
                    href={getRelativeLocaleUrl(lang, route.path)}
                    title={route.name}
                    data-astro-prefetch="tap"
@@ -199,6 +201,10 @@
     }
 
     @media (width >= 768px) {
+        .navbar {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
         .option-list-container {
             display: flex;
             justify-content: center;
@@ -234,7 +240,8 @@
             font-weight: 700;
             font-size: var(--fs-base);
         }
-        .option-list-link:hover {
+        .option-list-link:hover,
+        .option-list-link-active {
             color: var(--primary-color);
             transform: scale(1.03);
         }

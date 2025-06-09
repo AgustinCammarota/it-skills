@@ -8,24 +8,27 @@ const t = useTranslations(lang);
 ---
 
 <section class="about-banner-section">
-  <div class="about-banner-content">
-    <h1 class="about-banner-title">
-      {t("about.banner.title")}
-    </h1>
-    <h2 class="about-banner-subtitle">
-      {t("about.banner.subtitle")}
-    </h2>
-    <h3 class="about-banner-description">
-      {t("about.banner.description")}
-    </h3>
-    <a
-      class="about-banner-link"
-      href={getRelativeLocaleUrl(lang, "/solutions")}
-      title={t("about.banner.link")}
-    >
-      {t("about.banner.link")}
-    </a>
+  <div class="about-banner-container">
+    <div class="about-banner-content">
+      <h1 class="about-banner-title">
+        {t("about.banner.title")}
+      </h1>
+      <h2 class="about-banner-subtitle">
+        {t("about.banner.subtitle")}
+      </h2>
+      <h3 class="about-banner-description">
+        {t("about.banner.description")}
+      </h3>
+      <a
+        class="about-banner-link"
+        href={getRelativeLocaleUrl(lang, "/solutions")}
+        title={t("about.banner.link")}
+      >
+        {t("about.banner.link")}
+      </a>
+    </div>
   </div>
+
   <div class="about-background-image" aria-hidden="true">
     <CustomImage
       className="background-image"
@@ -41,6 +44,10 @@ const t = useTranslations(lang);
   .about-banner-section {
     width: 100%;
     position: relative;
+  }
+  .about-banner-container {
+    width: 100%;
+    height: auto;
   }
   .about-banner-content {
     width: 100%;
@@ -97,11 +104,16 @@ const t = useTranslations(lang);
 
   @media (width >= 768px) {
     .about-banner-section {
+      min-height: 600px;
       padding: 40px;
     }
     .about-banner-content {
-      width: 550px;
+      width: 600px;
       border-radius: 12px;
+    }
+    .about-banner-container {
+      max-width: 1800px;
+      margin: 0 auto;
     }
     .about-banner-link:hover {
       background: linear-gradient(

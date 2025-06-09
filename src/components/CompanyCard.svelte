@@ -27,8 +27,8 @@
 <div class="company-card-container"
      style="opacity: {opacity}; transition-delay: {transitionDelay};"
      bind:this={container}>
-    <a class="company-card-link" href={link} title={name} aria-label={name} target="_blank" rel="noopener noreferrer">
-        {@html icon}
+    <a class="company-card-link" href={link} title={name} target="_blank" rel="noopener noreferrer">
+        {@render icon()}
     </a>
 </div>
 
