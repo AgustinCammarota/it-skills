@@ -84,6 +84,16 @@ export default defineConfig({
         access: "public",
         optional: false,
       }),
+      PUBLIC_CALENDLY_WIDGET: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_CALENDLY_URL: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
     },
   },
   experimental: {

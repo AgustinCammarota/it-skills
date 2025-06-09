@@ -127,6 +127,8 @@ jobs:
       PUBLIC_COMPANY_EMAIL: ${{ vars.PUBLIC_COMPANY_EMAIL }}
       PUBLIC_COMPANY_PHONE: ${{ vars.PUBLIC_COMPANY_PHONE }}
       PUBLIC_COMPANY_LINKEDIN: ${{ vars.PUBLIC_COMPANY_LINKEDIN }}
+      PUBLIC_CALENDLY_WIDGET: ${{ vars.PUBLIC_CALENDLY_WIDGET }}
+      PUBLIC_CALENDLY_URL: ${{ vars.PUBLIC_CALENDLY_URL }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:

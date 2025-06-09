@@ -7,6 +7,8 @@
   --dark-color: #355b6e;
   --darker-color: #26414f;
   --darkest-color: #0e1619;
+  --error-color: #e53935;
+  --disabled-color: #757575;
 
   /* Font sizes (based on 1rem = 10px) */
   --fs-sm: clamp(1.4rem, 1.5vw, 1.6rem); /* 14–16px */
@@ -38,8 +40,11 @@ html {
 }
 body {
   width: 100%;
-  max-width: 1600px;
-  margin: 0 auto;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
   background-color: var(--darker-color);
   font-size: var(--fs-base);
   overflow-x: hidden;
@@ -64,17 +69,20 @@ label,
 textarea,
 select,
 a {
+  color: var(--darkest-color);
   font-family: var(--font-comfortaa), sans-serif;
   font-size: var(--fs-base);
   line-height: var(--lh-loose);
 }
 small,
 select {
+  color: var(--darkest-color);
   font-size: var(--fs-sm);
   line-height: var(--lh-relaxed);
 }
 strong {
   font-weight: bold;
+  color: var(--darkest-color);
   font-size: var(--fs-base);
   line-height: var(--lh-loose);
 }

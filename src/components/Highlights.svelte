@@ -6,8 +6,8 @@
 
 
   let {
-      currentUrl
-    } : { currentUrl: URL } = $props();
+    currentUrl
+  } : { currentUrl: URL } = $props();
 
   const lang = getLangFromUrl(currentUrl);
   const t = useTranslations(lang);
@@ -43,37 +43,42 @@
 </script>
 
 <section class="highlights-section" bind:this={container}>
-    {#key visible}
-        <div class="highlight-container">
-            <h3 class="highlight-text" id="founded">
-                <span class="highlight-title">{t('highlight.founded.title')}</span>
-                <span class="highlight-number">{Math.round(founded.current)}</span>
-                <span class="highlight-subtitle">{t('highlight.founded.subtitle')}</span>
-            </h3>
-        </div>
+    <div class="highlights">
+        {#key visible}
+            <div class="highlight-container">
+                <h3 class="highlight-text" id="founded">
+                    <span class="highlight-title">{t('highlight.founded.title')}</span>
+                    <span class="highlight-number">{Math.round(founded.current)}</span>
+                    <span class="highlight-subtitle">{t('highlight.founded.subtitle')}</span>
+                </h3>
+            </div>
 
-        <div class="highlight-container" id="operating">
-            <h3 class="highlight-text">
-                <span class="highlight-title">{t('highlight.operating.title')}</span>
-                <span class="highlight-number">+{Math.round(operating.current)}</span>
-                <span class="highlight-subtitle"> {t('highlight.operating.subtitle')}</span>
-            </h3>
-        </div>
+            <div class="highlight-container" id="operating">
+                <h3 class="highlight-text">
+                    <span class="highlight-title">{t('highlight.operating.title')}</span>
+                    <span class="highlight-number">+{Math.round(operating.current)}</span>
+                    <span class="highlight-subtitle"> {t('highlight.operating.subtitle')}</span>
+                </h3>
+            </div>
 
-        <div class="highlight-container" id="companies">
-            <h3 class="highlight-text">
-                <span class="highlight-title">{t('highlight.companies.title')}</span>
-                <span class="highlight-number">+{Math.round(companies.current)}</span>
-                <span class="highlight-subtitle">{t('highlight.companies.subtitle')}</span>
-            </h3>
-        </div>
-    {/key}
+            <div class="highlight-container" id="companies">
+                <h3 class="highlight-text">
+                    <span class="highlight-title">{t('highlight.companies.title')}</span>
+                    <span class="highlight-number">+{Math.round(companies.current)}</span>
+                    <span class="highlight-subtitle">{t('highlight.companies.subtitle')}</span>
+                </h3>
+            </div>
+        {/key}
+    </div>
 </section>
 
 <style>
     .highlights-section {
         width: 100%;
         height: auto;
+        background: var(--lightest-color);
+    }
+    .highlights {
         display: grid;
         padding: 48px 16px;
         grid-template-columns: 1fr;
@@ -81,7 +86,6 @@
         justify-content: center;
         place-items: center center;
         gap: 42px;
-        background: var(--lightest-color);
     }
     .highlight-text {
         max-width: 300px;
@@ -103,7 +107,7 @@
     }
 
     @media (width >= 768px) {
-        .highlights-section {
+        .highlights {
             padding: 64px 16px;
             grid-template-columns: 1fr 1fr 1fr;
             grid-template-rows: 1fr;
@@ -111,7 +115,9 @@
     }
 
     @media (width >= 1025px) {
-        .highlights-section {
+        .highlights {
+            max-width: 1800px;
+            margin: 0 auto;
             padding: 64px 80px;
         }
     }
