@@ -14,7 +14,7 @@
 
   let container: HTMLElement;
   let visible = $state(false);
-  const founded = new Tween(0, {
+  const founded = new Tween(2000, {
     duration: 2000,
     easing: cubicOut
   });

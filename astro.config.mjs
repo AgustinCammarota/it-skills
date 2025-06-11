@@ -94,6 +94,31 @@ export default defineConfig({
         access: "public",
         optional: false,
       }),
+      PUBLIC_NETLIFY_URL: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      NETLIFY_EMAILS_PROVIDER: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      NETLIFY_EMAILS_PROVIDER_API_KEY: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      NETLIFY_EMAILS_SECRET: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      NETLIFY_EMAILS_MAILGUN_DOMAIN: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      NETLIFY_EMAILS_MAILGUN_HOST_REGION: envField.string({
+        context: "server",
+        access: "secret",
+      }),
     },
   },
   experimental: {

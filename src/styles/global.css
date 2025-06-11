@@ -9,6 +9,7 @@
   --darkest-color: #0e1619;
   --error-color: #e53935;
   --disabled-color: #757575;
+  --input-color: #fff;
 
   /* Font sizes (based on 1rem = 10px) */
   --fs-sm: clamp(1.4rem, 1.5vw, 1.6rem); /* 14–16px */
@@ -16,6 +17,7 @@
   --fs-md: clamp(2rem, 2vw, 2.4rem); /* 20–24px */
   --fs-lg: clamp(2.4rem, 2.5vw, 2.8rem); /* 24–28px */
   --fs-xl: clamp(2.8rem, 4vw, 3.2rem); /* 28–32px */
+  --fs-xxl: clamp(3.2rem, 4vw, 3.8rem); /* 32–38px */
 
   /* Line heights */
   --lh-snug: 1.2;
@@ -110,4 +112,28 @@ a {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border-width: 0;
+}
+.gradient-title {
+  background: linear-gradient(
+    176deg,
+    var(--light-color),
+    var(--primary-color),
+    var(--darkest-color)
+  );
+  background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}
+.gradient-background::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    var(--lightest-color) 0%,
+    var(--lighter-color) 10%,
+    var(--lighter-color) 90%,
+    var(--lightest-color) 100%
+  );
 }

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Nuevo contacto de cliente</title>
+  </head>
+  <body
+    style="
+      margin: 0;
+      padding: 0;
+      font-family:
+        &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif;
+      background-color: #f4f4f4;
+    "
+  >
+    <div
+      style="
+        max-width: 600px;
+        margin: 40px auto;
+        background-color: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 30px;
+      "
+    >
+      <h2 style="color: #222; font-size: 22px; margin-bottom: 10px">
+        &#x1F4E9; Nuevo mensaje de contacto
+      </h2>
+
+      <p style="color: #555; font-size: 16px">
+        <strong>Nombre:</strong> {{name}}<br />
+        <strong>Asunto:</strong> {{subject}}<br />
+        <strong>Motivo:</strong> {{options}}<br />
+        <strong>Email:</strong>
+        <a href="mailto:{{email}}" style="color: #007bff">{{email}}</a><br />
+      </p>
+
+      <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd" />
+
+      <p style="color: #555; font-size: 16px"><strong>Mensaje:</strong></p>
+      <p style="color: #333; font-size: 16px; font-style: italic">
+        "{{message}}"
+      </p>
+
+      <p
+        style="
+          font-size: 13px;
+          color: #999;
+          margin-top: 40px;
+          text-align: center;
+        "
+      >
+        Este mensaje fue enviado desde el formulario de contacto de tu sitio
+        web.
+      </p>
+    </div>
+  </body>
+</html>

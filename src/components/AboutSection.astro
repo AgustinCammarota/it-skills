@@ -1,0 +1,22 @@
+---
+import AboutBanner from "@components/AboutBanner.astro";
+import Highlights from "@components/Highlights.svelte";
+import Companies from "@components/Companies.astro";
+import Mission from "@components/Mission.astro";
+
+const currentUrl: URL = Astro.url;
+---
+
+<section class="about-section">
+  <AboutBanner />
+  <Highlights currentUrl={currentUrl} client:load />
+  <Mission />
+  <Companies />
+</section>
+
+<style>
+  .about-section {
+    width: 100%;
+    height: 100%;
+  }
+</style>

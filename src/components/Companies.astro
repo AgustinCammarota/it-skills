@@ -3,6 +3,7 @@ import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import type { Company } from "@interfaces/company.interface";
 import CompanyCard from "@components/CompanyCard.svelte";
 import CustomIcon from "@components/CustomIcon.astro";
+import TitleSection from "@components/TitleSection.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -52,9 +53,7 @@ const companies: Company[] = [
 ---
 
 <section class="companies-section">
-  <h2 class="companies-section-title">
-    {t("companies.section.title")}
-  </h2>
+  <TitleSection title={t("companies.section.title")} primary />
 
   <div class="companies-container">
     {
@@ -86,16 +85,6 @@ const companies: Company[] = [
     padding: 24px 0 48px;
     background-color: var(--lightest-color);
   }
-  .companies-section-title {
-    margin: 40px 0 48px;
-    padding-bottom: 8px;
-    text-wrap: wrap;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 200;
-    color: var(--darkest-color);
-    border-bottom: 2px solid var(--lighter-color);
-  }
   .companies-container {
     width: 100%;
     height: 100%;
@@ -111,9 +100,6 @@ const companies: Company[] = [
   @media (width >= 768px) {
     .companies-section {
       padding: 40px 16px 120px;
-    }
-    .companies-section-title {
-      margin-bottom: 80px;
     }
     .companies-container {
       max-width: 1800px;

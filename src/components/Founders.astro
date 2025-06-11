@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
 import FounderCard from "@components/FounderCard.svelte";
 import CustomImage from "@components/CustomImage.astro";
+import TitleSection from "@components/TitleSection.astro";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -14,8 +15,8 @@ const founders = await getCollection("founders", ({ id }: { id: string }) => {
 const sortFounders = founders.sort((a, b) => a.data.order - b.data.order);
 ---
 
-<section class="founders-section">
-  <h2 class="founders-section-title">{t("founders.section.title")}</h2>
+<section class="founders-section gradient-background">
+  <TitleSection title={t("founders.section.title")} />
 
   <div class="founders-container">
     {
@@ -51,16 +52,6 @@ const sortFounders = founders.sort((a, b) => a.data.order - b.data.order);
     position: relative;
     padding: 48px 0;
   }
-  .founders-section-title {
-    margin: 40px 0 48px;
-    padding-bottom: 8px;
-    text-wrap: wrap;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 200;
-    color: var(--darkest-color);
-    border-bottom: 2px solid var(--lightest-color);
-  }
   .founders-container {
     padding: 0 16px;
     display: flex;
@@ -68,26 +59,10 @@ const sortFounders = founders.sort((a, b) => a.data.order - b.data.order);
     place-items: center center;
     gap: 32px;
   }
-  .founders-section::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    background: linear-gradient(
-      to bottom,
-      var(--lightest-color) 0%,
-      var(--lighter-color) 10%,
-      var(--lighter-color) 90%,
-      var(--lightest-color) 100%
-    );
-  }
 
   @media (width >= 768px) {
     .founders-section {
       padding: 80px 16px;
-    }
-    .founders-section-title {
-      margin-bottom: 80px;
     }
     .founders-container {
       max-width: 1800px;
