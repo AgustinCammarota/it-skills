@@ -64,8 +64,13 @@
         justify-content: center;
         align-items: center;
         background-color: var(--lightest-color);
+        box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
         border-radius: 16px;
         transition: opacity 1.5s, transform 0.2s ease;
+    }
+    .founder-card-image {
+        width: 150px;
+        height: 150px;
     }
     .founder-card-name {
         margin-top: 8px;

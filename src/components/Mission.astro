@@ -1,0 +1,96 @@
+---
+import TitleSection from "@components/TitleSection.astro";
+import MissionCard from "@components/MissionCard.svelte";
+import CustomIcon from "@components/CustomIcon.astro";
+import type { Mission } from "@interfaces/mission.interface";
+
+const missionInformation: Mission[] = [
+  {
+    title: "A strong network built with trust",
+    description:
+      "At the core of everything we do, there is a network built over the years on trust, ethics, professionalism, and strong values.",
+    icon: "groups",
+    iconLabel: "Groups",
+  },
+  {
+    title: "A strong network built with trust",
+    description:
+      "At the core of everything we do, there is a network built over the years on trust, ethics, professionalism, and strong values.",
+    icon: "groups",
+    iconLabel: "Groups",
+  },
+  {
+    title: "A strong network built with trust",
+    description:
+      "At the core of everything we do, there is a network built over the years on trust, ethics, professionalism, and strong values.",
+    icon: "groups",
+    iconLabel: "Groups",
+  },
+];
+---
+
+<section class="mission-section gradient-background">
+  <TitleSection title="Our Mission" />
+
+  <div class="mission-container">
+    <h2 class="mission-title">
+      More than 20 years of experience, one purpose: helping people and
+      companies grow together
+    </h2>
+    <div class="mission-card-container">
+      {
+        missionInformation.map((mission, index) => (
+          <MissionCard
+            title={mission.title}
+            description={mission.description}
+            transitionDelay={`0.${index}s`}
+            client:load
+          >
+            <CustomIcon
+              slot="icon"
+              name={mission.icon}
+              label={mission.iconLabel}
+              width="60"
+              height="40"
+            />
+          </MissionCard>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .mission-section {
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    position: relative;
+  }
+  .mission-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .mission-card-container {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (width >= 768px) {
+    .mission-container {
+      max-width: 1800px;
+      margin: 0 auto;
+      flex-direction: row;
+      justify-content: center;
+      gap: 108px;
+    }
+    .mission-title {
+      max-width: 500px;
+    }
+    .mission-card-container {
+      max-width: 600px;
+    }
+  }
+</style>

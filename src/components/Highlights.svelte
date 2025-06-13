@@ -14,16 +14,16 @@
 
   let container: HTMLElement;
   let visible = $state(false);
-  const founded = new Tween(0, {
-    duration: 2000,
+  const founded = new Tween(2000, {
+    duration: 1000,
     easing: cubicOut
   });
   const operating = new Tween(0, {
-    duration: 2000,
+    duration: 1000,
     easing: cubicOut
   });
   const companies = new Tween(0, {
-    duration: 2000,
+    duration: 1000,
     easing: cubicOut
   });
 

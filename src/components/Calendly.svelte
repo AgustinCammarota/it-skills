@@ -25,11 +25,14 @@
 
 <style>
     .calendly-inline-widget {
-        height: 600px;
+        height: 605px;
         width: 100%;
         max-width: 500px;
         min-width: 300px;
         margin: 0;
+        padding: 2px;
+        background: var(--lightest-color);
+        border-radius: 8px;
     }
 
     @media (width >= 768px) {

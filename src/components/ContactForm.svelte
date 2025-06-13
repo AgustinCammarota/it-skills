@@ -1,5 +1,8 @@
 <script lang="ts">
+  import { actions } from 'astro:actions';
   import { getLangFromUrl, useTranslations  } from "@i18n/utils";
+  import { onMount } from "svelte";
+  import { PUBLIC_RECAPTCHA_SITE_KEY } from "astro:env/client";
 
   let {
     currentUrl
@@ -16,6 +19,7 @@
   });
 
   let selectValue = $state('');
+  let status: 'success' | 'pending' | 'error' | 'loading' = $state('pending');
 
   const emailPattern = '[\\-a-zA-Z0-9~!$%^&amp;*_=+\\}\\{\'?]+(\\.[\\-a-zA-Z0-9~!$%^&amp;*_=+\\}\\{\'?]+)*@[a-zA-Z0-9_][\\-a-zA-Z0-9_]*(\\.[\\-a-zA-Z0-9_]+)*\\.[cC][oO][mM](:[0-9]{1,5})?';
   const inputPattern = '^[A-Za-zÁÉÍÓÚáéíóúñÑ\\s]+$';
@@ -69,7 +73,6 @@
     }
 
     if (input?.validity?.patternMismatch) {
-      console.log('entre')
       const text = name === 'email'
         ? t('contact.form.email.pattern.mismatch')
         : t('contact.form.input.pattern.mismatch');
@@ -92,19 +95,71 @@
     };
   }
 
-  function onSubmitForm(event: SubmitEvent): void {
+  async function executeCaptcha(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      if (!window.grecaptcha) {
+        return reject(new Error('Recaptcha not loaded.'));
+      }
+
+      window.grecaptcha.ready(() => {
+        window.grecaptcha
+          .execute(PUBLIC_RECAPTCHA_SITE_KEY, { action: 'contact' })
+          .then(resolve)
+          .catch(reject);
+      });
+    });
+  }
+
+  async function validateRecaptchaToken(): Promise<void> {
+    try {
+      const token = await executeCaptcha();
+      const { data, error } = await actions.recaptchaAction.verifyCaptcha({token});
+
+      if (error || data?.code !== 200) {
+        status = 'error';
+        return;
+      }
+    }
+    catch {
+      status = 'error';
+      return;
+    }
+  }
+
+  async function onSubmitForm(event: SubmitEvent): Promise<void> {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
-    const values = Object.fromEntries(formData.entries());
 
     if (!form.checkValidity()) {
       return;
     }
 
-    console.log(values)
-    // TODO Enviar formulario
+    status = 'loading';
+
+    await validateRecaptchaToken();
+
+    const { data, error } = await actions.email.sendEmail(formData);
+
+    if (error?.code) {
+      status = 'error';
+      return;
+    }
+
+    form.reset();
+    status = data?.status ?? 'success';
   }
+
+  onMount(() => {
+    if (!window.grecaptcha) {
+      const script = document.createElement('script');
+      script.src = `https://www.google.com/recaptcha/api.js?trustedtypes=true&render=${PUBLIC_RECAPTCHA_SITE_KEY}`;
+      script.async = true;
+      script.defer = true;
+      script.onload = executeCaptcha;
+      document.head.appendChild(script);
+    }
+  });
 </script>
 
 <form class="contact-form" onsubmit={onSubmitForm}>
@@ -120,7 +175,7 @@
                oninput={onSetCustomValidity}
                oninvalid={onSetCustomValidity}
                pattern={inputPattern}
-               maxlength="10">
+               maxlength="100">
     </div>
 
     <div class="contact-form-field">
@@ -149,7 +204,7 @@
                oninput={onSetCustomValidity}
                oninvalid={onSetCustomValidity}
                required
-               maxlength="50">
+               maxlength="100">
     </div>
 
     <div class="contact-form-field">
@@ -179,13 +234,29 @@
                 oninput={onSetCustomValidity}
                 oninvalid={onSetCustomValidity}
                 placeholder={t('contact.form.message')}
-                maxlength="1000"
+                maxlength="3000"
                 rows="5"
                 required
         ></textarea>
     </div>
 
-    <button class="contact-form-button" type="submit">{t('contact.form.button')} 🚀</button>
+    <button class="contact-form-button"
+            type="submit"
+            disabled={status === 'success' || status === 'loading'}
+            aria-disabled={status === 'success' || status === 'loading'}>
+        {#if status === 'pending'}
+            <span>{t('contact.form.button.pending')} &#x1F680;</span>
+        {/if}
+        {#if status === 'loading'}
+            <span>{t('contact.form.button.loading')} &#x23F3;</span>
+        {/if}
+        {#if status === 'success'}
+            <span>{t('contact.form.button.success')} &#x2705;</span>
+        {/if}
+        {#if status === 'error'}
+            <span>{t('contact.form.button.error')} &#x274C;</span>
+        {/if}
+    </button>
 </form>
 
 <style>
@@ -203,21 +274,19 @@
     .contact-form-select,
     .contact-form-textarea {
         width: 100%;
-        height: auto;
+        height: 43px;
         padding: 6px 12px;
         border: 1px solid var(--darker-color);
-        font-size: var(--fs-sm);
+        background-color: var(--input-color);
+        font-size: var(--fs-base);
         line-height: var(--lh-loose);
-        border-radius: 2px;
+        border-radius: 4px;
     }
     .contact-form-select {
         padding: 11px 8px;
     }
     .form-select-disabled {
         color: var(--disabled-color);
-    }
-    .contact-form-input[data-input-error="true"] {
-        outline-color: var(--error-color);
     }
     .contact-form-textarea {
         height: 140px;
@@ -234,10 +303,17 @@
         font-weight: 600;
         cursor: pointer;
     }
+    .contact-form-button[disabled] {
+        cursor: not-allowed;
+        opacity: 0.6;
+    }
     .contact-form-input:focus-visible,
     .contact-form-select:focus-visible,
     .contact-form-textarea:focus-visible {
         outline-color: var(--primary-color);
+    }
+    .contact-form-input[data-input-error="true"]:focus-visible {
+         outline-color: var(--error-color);
     }
 
     @media (width >= 768px) {
@@ -252,7 +328,7 @@
         .contact-form-textarea {
             margin-top: 18px;
         }
-        .contact-form-button:hover {
+        .contact-form-button:not([disabled]):hover {
             background: linear-gradient(
                     270deg,
                     var(--lightest-color),

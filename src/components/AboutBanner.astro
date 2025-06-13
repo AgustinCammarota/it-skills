@@ -13,7 +13,7 @@ const t = useTranslations(lang);
       <h1 class="about-banner-title">
         {t("about.banner.title")}
       </h1>
-      <h2 class="about-banner-subtitle">
+      <h2 class="about-banner-subtitle gradient-title">
         {t("about.banner.subtitle")}
       </h2>
       <h3 class="about-banner-description">
@@ -64,15 +64,6 @@ const t = useTranslations(lang);
   .about-banner-subtitle {
     margin: 24px 0;
     font-style: italic;
-    background: linear-gradient(
-      176deg,
-      var(--light-color),
-      var(--primary-color),
-      var(--darkest-color)
-    );
-    background-clip: text;
-    color: transparent;
-    font-weight: 600;
   }
   .about-banner-description {
     text-wrap: wrap;
@@ -108,7 +99,7 @@ const t = useTranslations(lang);
       padding: 40px;
     }
     .about-banner-content {
-      width: 600px;
+      width: 570px;
       border-radius: 12px;
     }
     .about-banner-container {
