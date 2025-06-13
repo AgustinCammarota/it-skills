@@ -1,6 +1,8 @@
 <script lang="ts">
   import { actions } from 'astro:actions';
   import { getLangFromUrl, useTranslations  } from "@i18n/utils";
+  import { onMount } from "svelte";
+  import { PUBLIC_RECAPTCHA_SITE_KEY } from "astro:env/client";
 
   let {
     currentUrl
@@ -93,6 +95,37 @@
     };
   }
 
+  async function executeCaptcha(): Promise<string> {
+    return new Promise((resolve, reject) => {
+      if (!window.grecaptcha) {
+        return reject(new Error('Recaptcha not loaded.'));
+      }
+
+      window.grecaptcha.ready(() => {
+        window.grecaptcha
+          .execute(PUBLIC_RECAPTCHA_SITE_KEY, { action: 'contact' })
+          .then(resolve)
+          .catch(reject);
+      });
+    });
+  }
+
+  async function validateRecaptchaToken(): Promise<void> {
+    try {
+      const token = await executeCaptcha();
+      const { data, error } = await actions.recaptchaAction.verifyCaptcha({token});
+
+      if (error || data?.code !== 200) {
+        status = 'error';
+        return;
+      }
+    }
+    catch {
+      status = 'error';
+      return;
+    }
+  }
+
   async function onSubmitForm(event: SubmitEvent): Promise<void> {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
@@ -103,6 +136,9 @@
     }
 
     status = 'loading';
+
+    await validateRecaptchaToken();
+
     const { data, error } = await actions.email.sendEmail(formData);
 
     if (error?.code) {
@@ -113,6 +149,17 @@
     form.reset();
     status = data?.status ?? 'success';
   }
+
+  onMount(() => {
+    if (!window.grecaptcha) {
+      const script = document.createElement('script');
+      script.src = `https://www.google.com/recaptcha/api.js?trustedtypes=true&render=${PUBLIC_RECAPTCHA_SITE_KEY}`;
+      script.async = true;
+      script.defer = true;
+      script.onload = executeCaptcha;
+      document.head.appendChild(script);
+    }
+  });
 </script>
 
 <form class="contact-form" onsubmit={onSubmitForm}>
@@ -281,7 +328,7 @@
         .contact-form-textarea {
             margin-top: 18px;
         }
-        .contact-form-button:hover {
+        .contact-form-button:not([disabled]):hover {
             background: linear-gradient(
                     270deg,
                     var(--lightest-color),

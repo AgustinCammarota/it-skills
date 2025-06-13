@@ -115,10 +115,19 @@ a {
 }
 .gradient-title {
   background: linear-gradient(
-    176deg,
-    var(--light-color),
-    var(--primary-color),
-    var(--darkest-color)
+    to left top,
+    #355b6e,
+    #43697c,
+    #51778a,
+    #5f8598,
+    #6d94a6,
+    #6f97aa,
+    #729baf,
+    #749eb3,
+    #6a97ad,
+    #6090a8,
+    #5689a2,
+    #4b829d
   );
   background-clip: text;
   color: transparent;
@@ -133,7 +142,7 @@ a {
     to bottom,
     var(--lightest-color) 0%,
     var(--lighter-color) 10%,
-    var(--lighter-color) 90%,
-    var(--lightest-color) 100%
+    var(--lighter-color) 98%,
+    var(--lighter-color) 100%
   );
 }

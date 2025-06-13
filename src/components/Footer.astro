@@ -12,8 +12,8 @@ import { getLangFromUrl, useTranslations } from "@i18n/utils";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const emailLink = `mailto:${PUBLIC_COMPANY_EMAIL}?subject=Consulta&body=Hola!`;
-const phoneLink = `https://wa.me/${PUBLIC_COMPANY_PHONE}?text=Hola%20Luciana%2C%20vi%20tu%20sitio%20web`;
+const emailLink = `mailto:${PUBLIC_COMPANY_EMAIL}?subject=${t("footer.email.subject")}&body=${t("footer.contact.body")}`;
+const phoneLink = `https://wa.me/${PUBLIC_COMPANY_PHONE}?text=${t("footer.contact.body")}`;
 ---
 
 <footer id="footer" class="footer-section">

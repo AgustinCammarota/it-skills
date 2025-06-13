@@ -99,6 +99,16 @@ export default defineConfig({
         access: "public",
         optional: false,
       }),
+      PUBLIC_RECAPTCHA_SITE_KEY: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
+      PUBLIC_API_RECAPTCHA: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
       NETLIFY_EMAILS_PROVIDER: envField.string({
         context: "server",
         access: "secret",
@@ -116,6 +126,10 @@ export default defineConfig({
         access: "secret",
       }),
       NETLIFY_EMAILS_MAILGUN_HOST_REGION: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      RECAPTCHA_SECRET_KEY: envField.string({
         context: "server",
         access: "secret",
       }),
