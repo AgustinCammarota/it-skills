@@ -24,10 +24,18 @@ async function requestCaptcha(token: string): Promise<{
       body: requestBody.toString(),
     });
 
+    const result = await response.json();
+
+    const isValid =
+      response.ok &&
+      result.success === true &&
+      result.action === "contact" &&
+      result.score >= 0.5;
+
     return {
-      code: response.ok ? 200 : 400,
-      status: response.ok ? "success" : "error",
-      message: response.ok ? "Recaptcha verified." : "Error recaptcha request.",
+      code: isValid ? 200 : 400,
+      status: isValid ? "success" : "error",
+      message: isValid ? "Recaptcha verified." : "Error recaptcha request.",
     };
   } catch {
     throw new ActionError({

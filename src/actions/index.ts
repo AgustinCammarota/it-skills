@@ -1,5 +1,5 @@
 import { email } from "./sendEmail.action.ts";
-import { recaptchaAction } from "./send-recaptcha.action.ts";
+import { recaptchaAction } from "./sendRecaptcha.action.ts";
 
 export const server = {
   email,

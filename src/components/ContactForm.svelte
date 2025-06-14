@@ -110,19 +110,20 @@
     });
   }
 
-  async function validateRecaptchaToken(): Promise<void> {
+  async function validateRecaptchaToken(): Promise<boolean> {
     try {
       const token = await executeCaptcha();
-      const { data, error } = await actions.recaptchaAction.verifyCaptcha({token});
+      const { data, error } = await actions.recaptchaAction.verifyCaptcha({ token });
 
       if (error || data?.code !== 200) {
         status = 'error';
-        return;
+        return false;
       }
-    }
-    catch {
+
+      return true;
+    } catch {
       status = 'error';
-      return;
+      return false;
     }
   }
 
@@ -131,13 +132,12 @@
     const form = event.target as HTMLFormElement;
     const formData = new FormData(form);
 
-    if (!form.checkValidity()) {
-      return;
-    }
+    if (!form.checkValidity()) return;
 
     status = 'loading';
 
-    await validateRecaptchaToken();
+    const captchaIsValid = await validateRecaptchaToken();
+    if (!captchaIsValid) return;
 
     const { data, error } = await actions.email.sendEmail(formData);
 
