@@ -31,27 +31,33 @@
     },
     {
       name: t('navbar.link.careers'),
-      path: "/careers"
+      path: "/careers/1"
     },
     {
       name: t('navbar.link.contact'),
       path: "/contact"
     }
   ]);
-  let paths: string[] = $derived(routes.map(route => route.path));
-  let currentLink: string | undefined = $derived(
-    currentUrl.pathname
-    .split("/")
-    .filter(Boolean)
-    .filter((path) => paths.includes(`/${path}`))?.[0]
-  );
+
+  let currentLink: string | undefined = $derived.by(() => {
+    const route = currentUrl.pathname.split("/")
+      .filter(value => value !== 'en' && value !== 'es' && Boolean(value));
+
+    return `${route?.[0] ?? ''}/${route?.[1] ?? ''}`;
+  });
+
+  function setActiveLink(currentPath: string): boolean {
+    const activeSegments = currentUrl.pathname.split('/').filter(value => value !== 'en' && value !== 'es' && Boolean(value));
+    const targetSegments = currentPath.split('/').filter(Boolean);
+    return activeSegments?.[0] === targetSegments?.[0];
+  }
 </script>
 
 {#snippet listOptions()}
     <ul class="option-list">
         {#each routes as route, index (route.name)}
             <li class="option-list-item" data-index={index}>
-                <a class={currentUrl.pathname === getRelativeLocaleUrl(lang, route.path)
+                <a class={setActiveLink(route.path)
                     ? 'option-list-link option-list-link-active'
                     : 'option-list-link'}
                    href={getRelativeLocaleUrl(lang, route.path)}

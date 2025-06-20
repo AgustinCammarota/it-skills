@@ -1,7 +1,7 @@
 <script lang="ts">
   import { actions } from 'astro:actions';
   import { getLangFromUrl, useTranslations  } from "@i18n/utils";
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import { PUBLIC_RECAPTCHA_SITE_KEY } from "astro:env/client";
 
   let {
@@ -20,8 +20,9 @@
 
   let selectValue = $state('');
   let status: 'success' | 'pending' | 'error' | 'loading' = $state('pending');
+  let script: HTMLScriptElement | null = $state(null);
 
-  const emailPattern = '[\\-a-zA-Z0-9~!$%^&amp;*_=+\\}\\{\'?]+(\\.[\\-a-zA-Z0-9~!$%^&amp;*_=+\\}\\{\'?]+)*@[a-zA-Z0-9_][\\-a-zA-Z0-9_]*(\\.[\\-a-zA-Z0-9_]+)*\\.[cC][oO][mM](:[0-9]{1,5})?';
+  const emailPattern = '[\\-a-zA-Z0-9~!$%^&amp;*_=+\\}\\{\'?]+(\\.[\\-a-zA-Z0-9~!$%^&amp;*_=+\\}\\{\'?]+)*@[a-zA-Z0-9_][\\-a-zA-Z0-9_]*(\\.[\\-a-zA-Z0-9_]+)*\\.[a-zA-Z]{2,}(:[0-9]{1,5})?';
   const inputPattern = '^[A-Za-zÁÉÍÓÚáéíóúñÑ\\s]+$';
   const lang = getLangFromUrl(currentUrl);
   const t = useTranslations(lang);
@@ -152,13 +153,22 @@
 
   onMount(() => {
     if (!window.grecaptcha) {
-      const script = document.createElement('script');
+      script = document.createElement('script');
       script.src = `https://www.google.com/recaptcha/api.js?trustedtypes=true&render=${PUBLIC_RECAPTCHA_SITE_KEY}`;
       script.async = true;
       script.defer = true;
       script.onload = executeCaptcha;
       document.head.appendChild(script);
     }
+  });
+
+  onDestroy(() => {
+    if (script && script.parentNode) {
+      script.parentNode.removeChild(script);
+      script = null;
+    }
+
+    window.grecaptcha = undefined;
   });
 </script>
 
@@ -294,7 +304,7 @@
         resize: none;
     }
     .contact-form-button {
-        padding: 8px 16px;
+        padding: 4px 16px;
         border: none;
         border-radius: 8px;
         background: linear-gradient(90deg, var(--light-color), var(--primary-color), var(--dark-color));

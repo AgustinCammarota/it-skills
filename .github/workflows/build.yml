@@ -114,7 +114,7 @@ jobs:
         run: npm run stylelint
 
   # This workflow contains a single job called "build"
-  build:
+  check:
     # Define a time-out flow
     timeout-minutes: 15
     # The type of runner that the job will run on
@@ -132,6 +132,7 @@ jobs:
       PUBLIC_NETLIFY_URL: ${{ vars.PUBLIC_NETLIFY_URL }}
       PUBLIC_RECAPTCHA_SITE_KEY: ${{ vars.PUBLIC_RECAPTCHA_SITE_KEY }}
       PUBLIC_API_RECAPTCHA: ${{ vars.PUBLIC_API_RECAPTCHA }}
+      PUBLIC_STRAPI_URL: ${{ vars.PUBLIC_STRAPI_URL }}
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -156,6 +157,6 @@ jobs:
       - name: Install dependencies
         run: npm i
 
-      # 2) Run build test
-      - name: Build
-        run: npm run build
+      # 2) Run check test
+      - name: check
+        run: npm run check

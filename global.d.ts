@@ -8,7 +8,7 @@ interface Grecaptcha {
 // global.d.ts
 declare global {
   interface Window {
-    grecaptcha: Grecaptcha;
+    grecaptcha: Grecaptcha | undefined;
   }
 }
 export {};

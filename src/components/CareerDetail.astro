@@ -1,0 +1,223 @@
+---
+import { marked } from "marked";
+import { PUBLIC_STRAPI_URL } from "astro:env/client";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import type { Career } from "@interfaces/career.interface";
+import CustomImage from "@components/CustomImage.astro";
+import CustomIcon from "@components/CustomIcon.astro";
+
+interface Props {
+  career: Career;
+}
+
+const { career } = Astro.props;
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const content = marked.parse(career.description);
+const imagePath = `${PUBLIC_STRAPI_URL}${career.image.url}`;
+const date = new Date(career.date);
+const formatDate = new Intl.DateTimeFormat(lang, {
+  day: "2-digit",
+  month: "2-digit",
+  year: "numeric",
+})
+  .format(date)
+  .replaceAll("/", "-");
+---
+
+<section class="card-detail-section">
+  <div class="card-title-container">
+    <button
+      class="card-detail-back-link"
+      type="button"
+      onclick="history.back()"
+    >
+      <CustomIcon
+        name="arrow-left"
+        label={t("career.detail.back")}
+        width="20"
+        height="20"
+      />
+    </button>
+
+    <h3 class="card-title-text">{t("career.detail.title")}</h3>
+  </div>
+
+  <div class="card-detail-container">
+    <h1 class="card-detail-title">
+      {career.title}
+    </h1>
+
+    <div class="card-detail-image">
+      <CustomImage
+        imagePath={imagePath}
+        altText={career.image.alternativeText}
+        width={200}
+        height={100}
+        layout="constrained"
+        quality="high"
+        isRemoteImage
+      />
+    </div>
+
+    <ul class="card-detail-description-list">
+      <li class="card-detail-description-item">
+        {t("career.detail.date")}
+        <time class="card-detail-time">{formatDate}</time>
+      </li>
+      <li class="card-detail-description-item">
+        {t("career.detail.modality")}
+        <span class="card-detail-modality">{career.modality}</span>
+      </li>
+      <li class="card-detail-description-item">
+        {t("career.detail.location")}
+        <address class="card-detail-location">{career.location}</address>
+      </li>
+    </ul>
+
+    <article class="card-detail-content" set:html={content} />
+
+    <div class="card-detail-link-container">
+      <a
+        class="card-detail-link"
+        href={career.link}
+        title={career.title}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {t("career.detail.link")} &#x1F680;
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .card-detail-section {
+    width: 100%;
+    height: 100%;
+    max-width: 1300px;
+    padding: 24px;
+  }
+  .card-title-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .card-title-text {
+    color: var(--lightest-color);
+    margin: 0;
+  }
+  .card-detail-back-link {
+    width: 45px;
+    height: 45px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: var(--lightest-color);
+    border: none;
+    cursor: pointer;
+  }
+  .card-detail-container {
+    min-width: 300px;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    padding: 32px;
+    border-radius: 12px;
+    background-color: var(--lightest-color);
+    border: 1px solid var(--primary-color);
+  }
+  .card-detail-title {
+    margin: 12px 0 40px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--darkest-color);
+    text-wrap: wrap;
+    text-align: center;
+  }
+  .card-detail-image {
+    width: 200px;
+    height: auto;
+    margin: 24px 0;
+  }
+  .card-detail-description-list {
+    margin-top: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--darkest-color);
+  }
+  .card-detail-description-item {
+    font-weight: bold;
+  }
+  .card-detail-description-item::before {
+    content: "-";
+    margin-right: 4px;
+  }
+  .card-detail-location,
+  .card-detail-modality,
+  .card-detail-time {
+    display: inline;
+    font-style: italic;
+    font-weight: normal;
+  }
+  .card-detail-content {
+    text-wrap: wrap;
+  }
+  .card-detail-link-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+  }
+  .card-detail-link {
+    margin: 12px 0;
+    padding: 6px 16px;
+    display: inline-block;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(
+      90deg,
+      var(--light-color),
+      var(--primary-color),
+      var(--dark-color)
+    );
+    color: var(--lightest-color);
+    font-size: var(--fs-base);
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  @media (width >= 768px) {
+    .card-detail-section {
+      padding: 80px;
+    }
+    .card-detail-back-link {
+      transform: scale(1);
+      transition: transform 0.2s ease;
+    }
+    .card-detail-back-link:hover {
+      transform: scale(1.2);
+    }
+    .card-detail-link:hover {
+      background: linear-gradient(
+        270deg,
+        var(--lightest-color),
+        var(--lighter-color),
+        var(--light-color)
+      );
+      color: var(--darkest-color);
+    }
+    .card-detail-image {
+      width: 300px;
+
+      img {
+        width: 300px;
+      }
+    }
+  }
+</style>
