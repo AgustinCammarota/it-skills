@@ -12,6 +12,7 @@ module.exports = {
   ],
   rules: {
     "rule-empty-line-before": null,
+    "selector-pseudo-class-no-unknown": null,
     "media-feature-range-notation": "context",
   },
 };

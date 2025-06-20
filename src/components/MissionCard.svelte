@@ -31,7 +31,7 @@
 </script>
 
 <div class="mission-card"
-     style="opacity: {opacity}; transition-delay: {transitionDelay};"
+     style="opacity: {opacity}; transition: opacity 1.5s ease {transitionDelay}, transform 0.2s ease;"
      bind:this={container}>
     <div class="icon-card">
         {@render icon()}
@@ -59,7 +59,6 @@
         background: var(--lightest-color);
         border-radius: 8px;
         box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
-        transition: opacity 1.5s, transform 0.2s ease;
     }
     .icon-card {
         width: 60px;

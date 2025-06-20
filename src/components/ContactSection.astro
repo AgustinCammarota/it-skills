@@ -10,7 +10,7 @@ const t = useTranslations(lang);
 <section class="contact-section">
   <div class="form-container">
     <h2 class="form-title">{t("contact.form.title")}</h2>
-    <ContactForm currentUrl={Astro.url} client:load />
+    <ContactForm currentUrl={Astro.url} client:only="svelte" />
   </div>
 
   <div class="calendly-container">

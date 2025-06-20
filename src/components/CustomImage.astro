@@ -8,6 +8,7 @@ interface Props {
   width?: number;
   height?: number;
   className?: string;
+  isRemoteImage?: boolean;
   layout?: "none" | "fixed" | "constrained" | "full-width";
   loading?: "eager" | "lazy" | null | undefined;
   quality?: "low" | "mid" | "high" | "max";
@@ -19,6 +20,7 @@ const {
   width,
   height,
   className = "",
+  isRemoteImage = false,
   layout = "none",
   loading = "lazy",
   quality = "low",
@@ -27,16 +29,21 @@ const {
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/images/*.{jpeg,jpg,png,gif,webp}",
 );
-if (!images[imagePath]) {
+
+if (!images[imagePath] && !isRemoteImage) {
   throw new Error(
     'Path does not exist in glob: "src/assets/images/*.{jpeg,jpg,png,gif,webp}',
   );
 }
+
+const src = (isRemoteImage ? imagePath : images[imagePath]()) as Promise<{
+  default: ImageMetadata;
+}>;
 ---
 
 <Image
   class={className}
-  src={images[imagePath]()}
+  src={src}
   width={width}
   height={height}
   loading={loading}

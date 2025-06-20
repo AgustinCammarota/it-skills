@@ -1,3 +1,6 @@
+import { PUBLIC_STRAPI_URL } from "astro:env/client";
+import { STRAPI_TOKEN } from "astro:env/server";
+
 interface Props {
   endpoint: string;
   query?: Record<string, string>;
@@ -23,14 +26,20 @@ export default async function fetchApi<T>({
     endpoint = endpoint.slice(1);
   }
 
-  const url = new URL(`/api/${endpoint}`);
+  const url = new URL(`${PUBLIC_STRAPI_URL}/api/${endpoint}`);
 
   if (query) {
     Object.entries(query).forEach(([key, value]) => {
       url.searchParams.append(key, value);
     });
   }
-  const res = await fetch(url.toString());
+
+  const res = await fetch(url.toString(), {
+    headers: {
+      Authorization: `Bearer ${STRAPI_TOKEN}`,
+    },
+  });
+
   let data = await res.json();
 
   if (wrappedByKey) {

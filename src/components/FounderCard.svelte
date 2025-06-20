@@ -36,7 +36,7 @@
 
 <a class="founder-card-container"
    href={link} title={linkTitle} target="_blank" rel="noopener noreferrer"
-   style="opacity: {opacity}; transition-delay: {transitionDelay};"
+   style="opacity: {opacity}; transition: opacity 1.5s ease {transitionDelay}, transform 0.2s ease;"
    bind:this={container}>
     <div class="founder-card-image">
         {@render image()}
@@ -66,7 +66,6 @@
         background-color: var(--lightest-color);
         box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
         border-radius: 16px;
-        transition: opacity 1.5s, transform 0.2s ease;
     }
     .founder-card-image {
         width: 150px;

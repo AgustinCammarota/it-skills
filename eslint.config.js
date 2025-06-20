@@ -8,7 +8,6 @@ export default [
   {
     rules: {
       "no-console": "error",
-      "astro/no-set-html-directive": "error",
       "astro/no-conflict-set-directives": "error",
       "astro/no-unused-define-vars-in-style": "error",
       "astro/no-set-text-directive": "warn",
@@ -16,7 +15,6 @@ export default [
         "warn",
         { argsIgnorePattern: "^_" },
       ],
-      "@typescript-eslint/explicit-module-boundary-types": "warn",
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/no-unused-expressions": [
         "error",

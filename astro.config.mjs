@@ -26,6 +26,12 @@ export default defineConfig({
       fallbackType: "rewrite",
     },
   },
+  image: {
+    domains: [
+      "http://localhost:1337",
+      "https://dependable-nature-bc7f4e7cee.strapiapp.com",
+    ],
+  },
   adapter: netlify({
     imageCDN: true,
     cacheOnDemandPages: true,
@@ -109,6 +115,11 @@ export default defineConfig({
         access: "public",
         optional: false,
       }),
+      PUBLIC_STRAPI_URL: envField.string({
+        context: "client",
+        access: "public",
+        optional: false,
+      }),
       NETLIFY_EMAILS_PROVIDER: envField.string({
         context: "server",
         access: "secret",
@@ -130,6 +141,10 @@ export default defineConfig({
         access: "secret",
       }),
       RECAPTCHA_SECRET_KEY: envField.string({
+        context: "server",
+        access: "secret",
+      }),
+      STRAPI_TOKEN: envField.string({
         context: "server",
         access: "secret",
       }),

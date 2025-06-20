@@ -1,0 +1,54 @@
+---
+import fetchApi from "@lib/strapi";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import type { Career } from "@interfaces/career.interface";
+import Layout from "@layouts/Layout.astro";
+import CareerDetail from "@components/CareerDetail.astro";
+
+export async function getStaticPaths() {
+  const careers: Career[] = await fetchApi<Career[]>({
+    query: {
+      "fields[0]": "title",
+      "fields[1]": "description",
+      "fields[2]": "active",
+      "fields[3]": "date",
+      "fields[4]": "slug",
+      "fields[5]": "modality",
+      "fields[6]": "link",
+      "fields[7]": "location",
+      "populate[image][fields][0]": "url",
+      "populate[image][fields][1]": "alternativeText",
+      locale: "en",
+      sort: "date:desc",
+    },
+    endpoint: "careers",
+    wrappedByKey: "data",
+  });
+
+  const filterCareers = (careers || []).filter((c) => c.active);
+
+  return filterCareers.map((career) => {
+    return {
+      params: { slug: career.slug },
+      props: { career },
+    };
+  });
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+interface Props {
+  career: Career;
+}
+
+const { career } = Astro.props;
+---
+
+<Layout
+  title={t("career.detail.meta.title")}
+  description={t("career.detail.meta.description")}
+  keywords={t("career.detail.meta.keywords")}
+>
+  <CareerDetail transition:name="career-detail" career={career} />
+</Layout>

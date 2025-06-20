@@ -70,6 +70,9 @@ input,
 label,
 textarea,
 select,
+time,
+address,
+button,
 a {
   color: var(--darkest-color);
   font-family: var(--font-comfortaa), sans-serif;
@@ -115,19 +118,10 @@ a {
 }
 .gradient-title {
   background: linear-gradient(
-    to left top,
-    #355b6e,
-    #43697c,
-    #51778a,
-    #5f8598,
-    #6d94a6,
-    #6f97aa,
-    #729baf,
-    #749eb3,
-    #6a97ad,
-    #6090a8,
-    #5689a2,
-    #4b829d
+    90deg,
+    var(--primary-color) 0%,
+    var(--dark-color) 50%,
+    var(--darker-color) 100%
   );
   background-clip: text;
   color: transparent;
