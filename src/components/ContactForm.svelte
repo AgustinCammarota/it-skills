@@ -287,7 +287,7 @@
         height: 43px;
         padding: 6px 12px;
         border: 1px solid var(--darker-color);
-        background-color: var(--input-color);
+        background-color: var(--secondary-color);
         font-size: var(--fs-base);
         line-height: var(--lh-loose);
         border-radius: 4px;

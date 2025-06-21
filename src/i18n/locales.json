@@ -3,6 +3,7 @@
     "navbar.menu.option": "Menu",
     "navbar.logo.option": "IT Skills",
     "navbar.close.option": "Cerrar",
+    "navbar.link.home": "Inicio",
     "navbar.link.about": "Nosotros",
     "navbar.link.solutions": "Servicios",
     "navbar.link.careers": "Posiciones",
@@ -72,12 +73,20 @@
     "career.detail.link": "Aplicar Ahora",
     "career.detail.date": "Fecha de publicación:",
     "career.detail.modality": "Modalidad:",
-    "career.detail.location": "Ubicación:"
+    "career.detail.location": "Ubicación:",
+    "mission.section.title": "Nuestra Misión",
+    "mission.one.title": "Una sólida red construída a partir de la confianza",
+    "mission.one.description": "En el corazón de lo que hacemos hay una red construida a lo largo de los años sobre la base de la confianza, la ética, el profesionalismo y valores sólidos. Nos enorgullece conectar empresas y profesionales que comparten este espíritu.",
+    "mission.two.title": "Qué diferencia a IT Skills",
+    "mission.two.description": "Nos enfocamos en la calidad por sobre la cantidad. Trabajamos con un número limitado de búsquedas para poder dedicarnos por completo a cada proceso. Cuando trabajás con IT Skills, encontrás un verdadero aliado que te brindará un acompañamiento cercano en cada paso.",
+    "mission.three.title": "Amplia experiencia en el mercado",
+    "mission.three.description": "Nuestra amplia experiencia brinda una perspectiva única que aporta valor a las decisiones estratégicas. Te acompañamos con asesoramiento experto para que tomes la mejor decisión para tu equipo y los objetivos de tu negocio."
   },
   "en": {
     "navbar.menu.option": "Menu",
     "navbar.logo.option": "IT Skills",
     "navbar.close.option": "Close",
+    "navbar.link.home": "Home",
     "navbar.link.about": "About Us",
     "navbar.link.solutions": "Services",
     "navbar.link.careers": "Careers",
@@ -147,6 +156,13 @@
     "career.detail.link": "Apply Now",
     "career.detail.date": "Publish date:",
     "career.detail.modality": "Modality:",
-    "career.detail.location": "Location:"
+    "career.detail.location": "Location:",
+    "mission.section.title": "Our Mission",
+    "mission.one.title": "A strong network built with trust",
+    "mission.one.description": "At the core of what we do, there is a network built over the years on trust, ethics, professionalism, and strong values. We take pride in connecting companies and professionals who share this spirit.",
+    "mission.two.title": "What sets IT Skills apart",
+    "mission.two.description": "We focus on quality over quantity. We take on a limited number of searches at a time, allowing us to fully dedicate ourselves to each process. When you work with IT Skills, you’ll find a true partner, offering close support every step of the way.",
+    "mission.three.title": "Long-standing experience in the industry",
+    "mission.three.description": "Our long-standing experience gives us a unique perspective that adds value to strategic decisions. We support you with expert guidance to ensure you make the right decision for your team and business goals."
   }
 }

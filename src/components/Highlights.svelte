@@ -76,7 +76,7 @@
     .highlights-section {
         width: 100%;
         height: auto;
-        background: var(--lightest-color);
+        background: var(--secondary-color);
     }
     .highlights {
         display: grid;

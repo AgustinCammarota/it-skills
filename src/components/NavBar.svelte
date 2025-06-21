@@ -22,8 +22,12 @@
   let selected: 'es' | 'en' = $state(lang);
   let routes: Routes[] = $state.raw([
     {
-      name: t('navbar.link.about'),
+      name: t('navbar.link.home'),
       path: "/"
+    },
+    {
+      name: t('navbar.link.about'),
+      path: "/about"
     },
     {
       name: t('navbar.link.solutions'),
