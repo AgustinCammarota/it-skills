@@ -27,6 +27,8 @@ export default defineConfig({
     },
   },
   image: {
+    responsiveStyles: true,
+    layout: "constrained",
     domains: [
       "http://localhost:1337",
       "https://dependable-nature-bc7f4e7cee.strapiapp.com",
@@ -151,7 +153,6 @@ export default defineConfig({
     },
   },
   experimental: {
-    responsiveImages: true,
     clientPrerender: true,
     fonts: [
       {
