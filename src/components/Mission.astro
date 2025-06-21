@@ -3,60 +3,55 @@ import TitleSection from "@components/TitleSection.astro";
 import MissionCard from "@components/MissionCard.svelte";
 import CustomIcon from "@components/CustomIcon.astro";
 import type { Mission } from "@interfaces/mission.interface";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const missionInformation: Mission[] = [
   {
-    title: "A strong network built with trust",
-    description:
-      "At the core of everything we do, there is a network built over the years on trust, ethics, professionalism, and strong values.",
+    title: t("mission.one.title"),
+    description: t("mission.one.description"),
     icon: "groups",
     iconLabel: "Groups",
   },
   {
-    title: "A strong network built with trust",
-    description:
-      "At the core of everything we do, there is a network built over the years on trust, ethics, professionalism, and strong values.",
-    icon: "groups",
-    iconLabel: "Groups",
+    title: t("mission.two.title"),
+    description: t("mission.two.description"),
+    icon: "invert-colors",
+    iconLabel: "Quality",
   },
   {
-    title: "A strong network built with trust",
-    description:
-      "At the core of everything we do, there is a network built over the years on trust, ethics, professionalism, and strong values.",
-    icon: "groups",
-    iconLabel: "Groups",
+    title: t("mission.three.title"),
+    description: t("mission.three.description"),
+    icon: "engineering",
+    iconLabel: "Experience",
   },
 ];
 ---
 
-<section class="mission-section gradient-background">
-  <TitleSection title="Our Mission" />
+<section class="mission-section">
+  <TitleSection title={t("mission.section.title")} />
 
   <div class="mission-container">
-    <h2 class="mission-title">
-      More than 20 years of experience, one purpose: helping people and
-      companies grow together
-    </h2>
-    <div class="mission-card-container">
-      {
-        missionInformation.map((mission, index) => (
-          <MissionCard
-            title={mission.title}
-            description={mission.description}
-            transitionDelay={`0.${index}s`}
-            client:load
-          >
-            <CustomIcon
-              slot="icon"
-              name={mission.icon}
-              label={mission.iconLabel}
-              width="60"
-              height="40"
-            />
-          </MissionCard>
-        ))
-      }
-    </div>
+    {
+      missionInformation.map((mission, index) => (
+        <MissionCard
+          title={mission.title}
+          description={mission.description}
+          transitionDelay={`0.${index}s`}
+          client:load
+        >
+          <CustomIcon
+            slot="icon"
+            name={mission.icon}
+            label={mission.iconLabel}
+            width="70"
+            height="60"
+          />
+        </MissionCard>
+      ))
+    }
   </div>
 </section>
 
@@ -65,32 +60,23 @@ const missionInformation: Mission[] = [
     width: 100%;
     height: 100%;
     padding: 16px;
-    position: relative;
+    background-color: var(--lightest-color);
   }
   .mission-container {
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-  }
-  .mission-card-container {
-    width: 100%;
-    height: auto;
   }
 
   @media (width >= 768px) {
     .mission-container {
       max-width: 1800px;
       margin: 0 auto;
+      justify-content: space-evenly;
+      align-items: stretch;
       flex-direction: row;
-      justify-content: center;
-      gap: 108px;
-    }
-    .mission-title {
-      max-width: 500px;
-    }
-    .mission-card-container {
-      max-width: 600px;
+      gap: 32px;
     }
   }
 </style>

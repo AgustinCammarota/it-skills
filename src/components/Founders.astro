@@ -15,7 +15,7 @@ const founders = await getCollection("founders", ({ id }: { id: string }) => {
 const sortFounders = founders.sort((a, b) => a.data.order - b.data.order);
 ---
 
-<section class="founders-section gradient-background">
+<section class="founders-section">
   <TitleSection title={t("founders.section.title")} />
 
   <div class="founders-container">
@@ -49,7 +49,6 @@ const sortFounders = founders.sort((a, b) => a.data.order - b.data.order);
   .founders-section {
     width: 100%;
     height: auto;
-    position: relative;
     padding: 48px 0;
   }
   .founders-container {

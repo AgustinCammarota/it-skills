@@ -48,34 +48,41 @@
 
 <style>
     .mission-card {
+        flex: 1 1 300px;
         width: 100%;
-        height: 100%;
+        height: auto;
+        max-width: 400px;
         margin-bottom: 32px;
-        padding: 16px;
+        padding: 24px 16px;
         display: flex;
-        justify-content: flex-start;
-        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         gap: 16px;
-        background: var(--lightest-color);
+        background: var(--secondary-color);
         border-radius: 8px;
         box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
     }
     .icon-card {
-        width: 60px;
-        height: 40px;
+        width: 70px;
+        height: 60px;
         color: var(--primary-color);
     }
     .title-text {
-        margin: 11px 0 16px;
+        margin: 12px 0;
+        text-align: center;
     }
     .description-text {
         margin: 0;
         line-height: var(--lh-relaxed);
-        text-wrap: balance;
+        font-size: var(--fs-sm);
+        text-wrap: wrap;
+        text-align: center;
     }
 
     @media (width >= 768px) {
         .mission-card {
+            justify-content: start;
             transform: scale(1);
         }
         .mission-card:hover {

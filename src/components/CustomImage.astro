@@ -9,8 +9,9 @@ interface Props {
   height?: number;
   className?: string;
   isRemoteImage?: boolean;
+  isPriority?: boolean;
   layout?: "none" | "fixed" | "constrained" | "full-width";
-  loading?: "eager" | "lazy" | null | undefined;
+  loading?: "eager" | "lazy";
   quality?: "low" | "mid" | "high" | "max";
 }
 
@@ -21,10 +22,13 @@ const {
   height,
   className = "",
   isRemoteImage = false,
+  isPriority = false,
   layout = "none",
   loading = "lazy",
   quality = "low",
 } = Astro.props;
+
+const extraProps = isPriority ? { priority: true } : {};
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/assets/images/*.{jpeg,jpg,png,gif,webp}",
@@ -53,6 +57,7 @@ const src = (isRemoteImage ? imagePath : images[imagePath]()) as Promise<{
   layout={layout}
   fit="cover"
   position="center"
+  {...extraProps}
 />
 <style>
   .background-image {

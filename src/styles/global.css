@@ -3,13 +3,13 @@
   --lightest-color: #edf3f5;
   --lighter-color: #b7cdd8;
   --light-color: #81a8ba;
+  --secondary-color: #fff;
   --primary-color: #4b829d;
   --dark-color: #355b6e;
   --darker-color: #26414f;
   --darkest-color: #0e1619;
   --error-color: #e53935;
   --disabled-color: #757575;
-  --input-color: #fff;
 
   /* Font sizes (based on 1rem = 10px) */
   --fs-sm: clamp(1.4rem, 1.5vw, 1.6rem); /* 14–16px */
@@ -126,17 +126,4 @@ a {
   background-clip: text;
   color: transparent;
   font-weight: 600;
-}
-.gradient-background::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(
-    to bottom,
-    var(--lightest-color) 0%,
-    var(--lighter-color) 10%,
-    var(--lighter-color) 98%,
-    var(--lighter-color) 100%
-  );
 }
