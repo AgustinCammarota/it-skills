@@ -16,7 +16,7 @@ const sortFounders = founders.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <section class="founders-section">
-  <TitleSection title={t("founders.section.title")} />
+  <TitleSection title={t("founders.section.title")} primary/>
 
   <div class="founders-container">
     {
@@ -50,6 +50,7 @@ const sortFounders = founders.sort((a, b) => a.data.order - b.data.order);
     width: 100%;
     height: auto;
     padding: 48px 0;
+    background-color: var(--lightest-color);
   }
   .founders-container {
     padding: 0 16px;

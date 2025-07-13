@@ -82,7 +82,10 @@
     "mission.three.title": "Amplia experiencia en el mercado",
     "mission.three.description": "Nuestra amplia experiencia brinda una perspectiva única que aporta valor a las decisiones estratégicas. Te acompañamos con asesoramiento experto para que tomes la mejor decisión para tu equipo y los objetivos de tu negocio.",
     "about.us.title": "Sobre nosotros",
-    "about.us.description": "Somos una consultora boutique que está redefiniendo la adquisición de talento un enfoque humano y estratégico. Ofrecemos servicios de headhunting estratégico y adquisición de talento para clientes de primer nivel en todo el mundo. Somos un equipo interdisciplinario de expertos en Reclutamiento IT, Ingeniería y Psicología, dedicados a conectar el talento adecuado con las oportunidades correctas — de manera estratégica, eficiente y con propósito.Más de 20 años de experiencia, una sola misión: ayudar a las personas y a las empresas a crecer juntas."
+    "about.us.description": "Somos una consultora boutique que está redefiniendo la adquisición de talento un enfoque humano y estratégico. Ofrecemos servicios de headhunting estratégico y adquisición de talento para clientes de primer nivel en todo el mundo. Somos un equipo interdisciplinario de expertos en Reclutamiento IT, Ingeniería y Psicología, dedicados a conectar el talento adecuado con las oportunidades correctas — de manera estratégica, eficiente y con propósito.Más de 20 años de experiencia, una sola misión: ayudar a las personas y a las empresas a crecer juntas.",
+    "about.us.meta.title": "IT Skills | Sobre nosotros",
+    "about.us.meta.description": "Conocé más sobre IT Skills. Descubrí nuestros valores, nuestra misión y cómo trabajamos para conectar a grandes talentos con grandes oportunidades.",
+    "about.us.meta.keywords": "IT Skills, sobre nosotros, valores, misión, trabajo, talento, oportunidades"
   },
   "en": {
     "navbar.menu.option": "Menu",
@@ -167,6 +170,9 @@
     "mission.three.title": "Long-standing experience in the industry",
     "mission.three.description": "Our long-standing experience gives us a unique perspective that adds value to strategic decisions. We support you with expert guidance to ensure you make the right decision for your team and business goals.",
     "about.us.title": "About Us",
-    "about.us.description": "We're a boutique consulting agency redefining Talent Acquisition with a human and strategic approach! We offer strategic headhunting and talent acquisition services to top-tier customers across the globe. We're an interdisciplinary team of experts in Tech Recruitment, Engineering, and Psychology, dedicated to connecting the right talent with the right opportunities — strategically efficiently, and with purpose. 20+ years of experience, one mission: helping people and companies grow together."
+    "about.us.description": "We're a boutique consulting agency redefining Talent Acquisition with a human and strategic approach! We offer strategic headhunting and talent acquisition services to top-tier customers across the globe. We're an interdisciplinary team of experts in Tech Recruitment, Engineering, and Psychology, dedicated to connecting the right talent with the right opportunities — strategically efficiently, and with purpose. 20+ years of experience, one mission: helping people and companies grow together.",
+    "about.us.meta.title": "IT Skills | About Us",
+    "about.us.meta.description": "Learn more about IT Skills. Discover our values, our mission, and how we work to connect great talent with great opportunities.",
+    "about.us.meta.keywords": "IT Skills, about us, values, mission, work, talent, opportunities"
   }
 }

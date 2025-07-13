@@ -63,7 +63,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: var(--lightest-color);
+        background-color: var(--secondary-color);
         box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
         border-radius: 16px;
     }
