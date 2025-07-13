@@ -175,9 +175,10 @@
 <form class="contact-form" onsubmit={onSubmitForm}>
     <div class="contact-form-field">
         <label class="sr-only" for="name">{t('contact.form.name')}</label>
-        <input type="text"
+        <input class="contact-form-input"
+               type="text"
                name="name"
-               class="contact-form-input"
+               inputmode="text"
                id="name"
                placeholder={t('contact.form.name')}
                required
@@ -190,9 +191,10 @@
 
     <div class="contact-form-field">
         <label class="sr-only" for="email">{t('contact.form.email')}</label>
-        <input type="email"
+        <input class="contact-form-input"
+               type="email"
                name="email"
-               class="contact-form-input"
+               inputmode="email"
                id="email"
                required
                placeholder={t('contact.form.email')}
@@ -205,9 +207,10 @@
 
     <div class="contact-form-field">
         <label class="sr-only" for="subject">{t('contact.form.subject')}</label>
-        <input type="text"
+        <input class="contact-form-input"
+               type="text"
                name="subject"
-               class="contact-form-input"
+               inputmode="text"
                id="subject"
                placeholder={t('contact.form.subject')}
                data-input-error={errors.subject}
@@ -237,8 +240,9 @@
     <div class="contact-form-field">
         <label class="sr-only" for="message">{t('contact.form.message')}</label>
         <textarea
-                name="message"
                 class="contact-form-textarea"
+                name="message"
+                inputmode="text"
                 id="message"
                 data-input-error={errors.options}
                 oninput={onSetCustomValidity}
