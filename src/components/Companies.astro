@@ -1,0 +1,114 @@
+---
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import type { Company } from "@interfaces/company.interface";
+import CompanyCard from "@components/CompanyCard.svelte";
+import CustomIcon from "@components/CustomIcon.astro";
+import TitleSection from "@components/TitleSection.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const companies: Company[] = [
+  {
+    name: "Globant",
+    link: "https://www.globant.com/",
+    icon: "globant-logo",
+  },
+  {
+    name: "Continental",
+    link: "https://www.continental-tires.com/ar/es/",
+    icon: "continental-logo",
+  },
+  {
+    name: "Prosegur",
+    link: "https://www.prosegur.com.ar/",
+    icon: "prosegur-logo",
+  },
+  {
+    name: "Salentein",
+    link: "https://www.bodegasalentein.com/",
+    icon: "salentein-logo",
+  },
+  {
+    name: "Tuv",
+    link: "https://www.tuv.com/argentina/es/",
+    icon: "tuv-logo",
+  },
+  {
+    name: "Vistage",
+    link: "https://vistage.com.ar/",
+    icon: "vistage-logo",
+  },
+  {
+    name: "Western Union",
+    link: "https://www.westernunion.com/ar/es/home.html",
+    icon: "western-union-logo",
+  },
+  {
+    name: "Saputo",
+    link: "https://saputo.com/es/",
+    icon: "saputo-logo",
+  },
+];
+---
+
+<section class="companies-section">
+  <TitleSection title={t("companies.section.title")} primary />
+
+  <div class="companies-container">
+    {
+      companies.map(({ name, link, icon }, index) => (
+        <CompanyCard
+          name={name}
+          link={link}
+          icon={icon}
+          transitionDelay={`0.${index}s`}
+          client:load
+        >
+          <CustomIcon
+            slot="icon"
+            name={icon}
+            label={name}
+            width="100%"
+            height="100%"
+          />
+        </CompanyCard>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .companies-section {
+    width: 100%;
+    height: 100%;
+    padding: 24px 0 48px;
+    background-color: var(--secondary-color);
+  }
+  .companies-container {
+    width: 100%;
+    height: 100%;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    place-content: center center;
+    justify-items: center;
+    gap: 40px;
+  }
+
+  @media (width >= 768px) {
+    .companies-section {
+      padding: 40px 16px 120px;
+    }
+    .companies-container {
+      max-width: 1800px;
+      margin: 0 auto;
+      padding: 0;
+      align-items: flex-start;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 64px;
+    }
+  }
+</style>

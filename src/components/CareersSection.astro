@@ -1,0 +1,167 @@
+---
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import type { Career } from "@interfaces/career.interface";
+import CareerCard from "@components/CareerCard.svelte";
+import CustomIcon from "@components/CustomIcon.astro";
+
+const currentUrl: URL = Astro.url;
+const lang = getLangFromUrl(currentUrl);
+const t = useTranslations(lang);
+
+interface Props {
+  careers: Career[];
+  pagination: {
+    current: string;
+    prev: string | undefined;
+    next: string | undefined;
+    first: string | undefined;
+    last: string | undefined;
+  };
+}
+
+const { careers, pagination } = Astro.props;
+---
+
+<section class="careers-section">
+  <h1 class="careers-title">
+    {t("careers.section.title")} &#x1F680;
+  </h1>
+
+  <div class="cards-container">
+    {
+      careers?.length ? (
+        careers.map((career, index) => (
+          <CareerCard
+            career={career}
+            currentUrl={currentUrl}
+            transitionDelay={`0.${index}s`}
+            transition:name="career-detail"
+            client:load
+          />
+        ))
+      ) : (
+        <div class="empty-cards">
+          <h2 class="empty-cards-title">{t("careers.empty.title")}</h2>
+          <p class="empty-cards-description">
+            {t("careers.empty.description")}
+          </p>
+        </div>
+      )
+    }
+  </div>
+
+  <div class="pagination-container">
+    {
+      pagination.prev ? (
+        <a class="pagination-link" href={pagination.prev}>
+          <CustomIcon
+            name="arrow-left"
+            label={t("careers.pagination.previous")}
+            width="20"
+            height="20"
+          />
+          <span>{t("careers.pagination.previous")}</span>
+        </a>
+      ) : (
+        <span aria-hidden="true" />
+      )
+    }
+
+    {
+      pagination.next ? (
+        <a class="pagination-link" href={pagination.next}>
+          <span>{t("careers.pagination.next")}</span>
+          <CustomIcon
+            name="arrow-right"
+            label={t("careers.pagination.next")}
+            width="20"
+            height="20"
+          />
+        </a>
+      ) : (
+        <span aria-hidden="true" />
+      )
+    }
+  </div>
+</section>
+
+<style>
+  .careers-section {
+    width: 100%;
+    height: 100%;
+    padding: 24px 16px;
+  }
+  .careers-title {
+    margin: 24px 0 48px;
+    text-align: center;
+    color: var(--lightest-color);
+    text-wrap: wrap;
+    font-size: var(--fs-xxl);
+  }
+  .cards-container {
+    width: 100%;
+    min-height: 50vh;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center center;
+    align-items: center;
+    gap: 32px 24px;
+  }
+  .empty-cards {
+    width: 100%;
+    height: auto;
+    background: var(--lightest-color);
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--primary-color);
+  }
+  .empty-cards-title {
+    text-wrap: wrap;
+  }
+  .empty-cards-description {
+    text-wrap: balance;
+  }
+  .pagination-container {
+    width: 100%;
+    height: auto;
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .pagination-link {
+      display: flex;
+      justify-content: start;
+      align-items: center;
+      gap: 4px;
+      color: var(--lightest-color);
+      font-size: var(--fs-md);
+      font-weight: 400;
+    }
+  }
+
+  @media (width >= 860px) {
+    .careers-section {
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+    .careers-title {
+      margin: 32px 0 48px;
+    }
+    .pagination-container {
+      margin-top: 64px;
+    }
+    .cards-container {
+      max-width: 830px;
+      margin: 0 auto;
+      justify-content: start;
+    }
+  }
+
+  @media (width >= 1280px) {
+    .cards-container {
+      max-width: 1250px;
+    }
+  }
+</style>

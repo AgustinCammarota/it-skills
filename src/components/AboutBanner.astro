@@ -1,0 +1,120 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import CustomImage from "@components/CustomImage.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="about-banner-section">
+  <div class="about-banner-container">
+    <div class="about-banner-content">
+      <h1 class="about-banner-title">
+        {t("about.banner.title")}
+      </h1>
+      <h2 class="about-banner-subtitle gradient-title">
+        {t("about.banner.subtitle")}
+      </h2>
+      <h3 class="about-banner-description">
+        {t("about.banner.description")}
+      </h3>
+      <a
+        class="about-banner-link"
+        href={getRelativeLocaleUrl(lang, "/solutions")}
+        title={t("about.banner.link")}
+      >
+        {t("about.banner.link")}
+      </a>
+    </div>
+  </div>
+
+  <div class="about-background-image" aria-hidden="true">
+    <CustomImage
+      className="background-image"
+      imagePath="/src/assets/images/about.webp"
+      altText={t("about.banner.image")}
+      layout="constrained"
+      quality="max"
+      isPriority
+    />
+  </div>
+</section>
+
+<style>
+  .about-banner-section {
+    width: 100%;
+    position: relative;
+  }
+  .about-banner-container {
+    width: 100%;
+    height: auto;
+  }
+  .about-banner-content {
+    width: 100%;
+    height: auto;
+    padding: 48px 24px;
+    background-color: rgb(242 245 255 / 65%);
+  }
+  .about-banner-title {
+    margin: 0;
+    line-height: 34px;
+    color: var(--darkest-color);
+    text-wrap: balance;
+  }
+  .about-banner-subtitle {
+    margin: 24px 0;
+    font-style: italic;
+  }
+  .about-banner-description {
+    text-wrap: wrap;
+    font-weight: 200;
+    color: var(--darkest-color);
+  }
+  .about-banner-link {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: linear-gradient(
+      90deg,
+      var(--light-color),
+      var(--primary-color),
+      var(--dark-color)
+    );
+    color: var(--lightest-color);
+    font-weight: 600;
+  }
+  .about-background-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+  }
+
+  @media (width >= 768px) {
+    .about-banner-section {
+      min-height: 600px;
+      padding: 40px;
+    }
+    .about-banner-content {
+      width: 570px;
+      border-radius: 12px;
+    }
+    .about-banner-container {
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+    .about-banner-link:hover {
+      background: linear-gradient(
+        270deg,
+        var(--lightest-color),
+        var(--lighter-color),
+        var(--light-color)
+      );
+      color: var(--darkest-color);
+    }
+  }
+</style>

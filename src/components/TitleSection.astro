@@ -1,0 +1,44 @@
+---
+interface Props {
+  title: string;
+  primary?: boolean;
+}
+
+const { title, primary = false }: Props = Astro.props;
+---
+
+<h2
+  class:list={{
+    "companies-section-title": true,
+    "title-primary": primary,
+    "title-secondary": !primary,
+  }}
+>
+  {title}
+</h2>
+
+<style>
+  .companies-section-title {
+    margin: 40px 0 48px;
+    padding-bottom: 8px;
+    text-wrap: wrap;
+    text-align: center;
+    text-transform: capitalize;
+    font-size: var(--fs-xxl);
+    font-weight: 400;
+  }
+  .title-primary {
+    color: var(--darkest-color);
+    border-bottom: 1px solid var(--darkest-color);
+  }
+  .title-secondary {
+    color: var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
+  }
+
+  @media (width >= 768px) {
+    .companies-section-title {
+      margin-bottom: 80px;
+    }
+  }
+</style>

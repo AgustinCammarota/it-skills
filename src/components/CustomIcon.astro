@@ -1,0 +1,34 @@
+---
+import type { JSX } from "astro/jsx-runtime";
+
+interface Props {
+  name: string;
+  width: string;
+  height: string;
+  label: string;
+  color?: string;
+}
+
+const { name, label, width, height, color = "currentColor" } = Astro.props;
+
+const svgs = import.meta.glob("/src/assets/icons/*.svg");
+
+const svgPath = `/src/assets/icons/${name}.svg`;
+
+let IconSvg: ((_props: JSX.SVGAttributes) => unknown) | undefined;
+
+if (!svgs[svgPath]) {
+  throw new Error('Path does not exist in glob: "src/icons/*.{svg}');
+}
+
+const mod = (await svgs[svgPath]()) as { default: (props: unknown) => unknown };
+IconSvg = mod.default;
+---
+
+<IconSvg
+  id={name}
+  fill={color}
+  width={width}
+  height={height}
+  aria-label={label}
+/>

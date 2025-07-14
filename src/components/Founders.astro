@@ -1,0 +1,77 @@
+---
+import { getCollection } from "astro:content";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import FounderCard from "@components/FounderCard.svelte";
+import CustomImage from "@components/CustomImage.astro";
+import TitleSection from "@components/TitleSection.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const founders = await getCollection("founders", ({ id }: { id: string }) => {
+  return id.startsWith(`${lang}/`);
+});
+
+const sortFounders = founders.sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="founders-section">
+  <TitleSection title={t("founders.section.title")} primary />
+
+  <div class="founders-container">
+    {
+      sortFounders.map(({ data }, index) => (
+        <FounderCard
+          name={data.name}
+          role={data.role}
+          link={data.link}
+          linkTitle={data.linkTitle}
+          transitionDelay={`0.${index}s`}
+          client:load
+        >
+          <CustomImage
+            className="rounded"
+            slot="image"
+            imagePath={data.image.src}
+            altText={data.image.alt}
+            width={150}
+            height={150}
+            layout="fixed"
+            quality="max"
+          />
+        </FounderCard>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .founders-section {
+    width: 100%;
+    height: auto;
+    padding: 48px 0;
+    background-color: var(--lightest-color);
+  }
+  .founders-container {
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    place-items: center center;
+    gap: 32px;
+  }
+
+  @media (width >= 768px) {
+    .founders-section {
+      padding: 80px 16px;
+    }
+    .founders-container {
+      max-width: 1800px;
+      margin: 0 auto;
+      padding: 0;
+      align-items: flex-start;
+      justify-content: space-around;
+      flex-direction: row;
+      gap: 24px;
+    }
+  }
+</style>

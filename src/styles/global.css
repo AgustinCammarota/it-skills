@@ -1,0 +1,129 @@
+:root {
+  /* Colors */
+  --lightest-color: #edf3f5;
+  --lighter-color: #b7cdd8;
+  --light-color: #81a8ba;
+  --secondary-color: #fff;
+  --primary-color: #4b829d;
+  --dark-color: #355b6e;
+  --darker-color: #26414f;
+  --darkest-color: #0e1619;
+  --error-color: #e53935;
+  --disabled-color: #757575;
+
+  /* Font sizes (based on 1rem = 10px) */
+  --fs-sm: clamp(1.4rem, 1.5vw, 1.6rem); /* 14–16px */
+  --fs-base: clamp(1.6rem, 1.9vw, 2rem); /* 16–20px */
+  --fs-md: clamp(2rem, 2vw, 2.4rem); /* 20–24px */
+  --fs-lg: clamp(2.4rem, 2.5vw, 2.8rem); /* 24–28px */
+  --fs-xl: clamp(2.8rem, 4vw, 3.2rem); /* 28–32px */
+  --fs-xxl: clamp(3.2rem, 4vw, 3.8rem); /* 32–38px */
+
+  /* Line heights */
+  --lh-snug: 1.2;
+  --lh-normal: 1.4;
+  --lh-relaxed: 1.6;
+  --lh-loose: 1.8;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+html {
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-comfortaa), sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-size: 62.5%;
+  font-style: normal;
+}
+body {
+  width: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--darker-color);
+  font-size: var(--fs-base);
+  overflow-x: hidden;
+}
+h1 {
+  font-size: var(--fs-xl);
+  line-height: var(--lh-normal);
+}
+h2 {
+  font-size: var(--fs-lg);
+  line-height: var(--lh-snug);
+}
+h3 {
+  font-size: var(--fs-md);
+  line-height: var(--lh-snug);
+}
+p,
+li,
+time,
+input,
+label,
+textarea,
+select,
+time,
+address,
+button,
+a {
+  color: var(--darkest-color);
+  font-family: var(--font-comfortaa), sans-serif;
+  font-size: var(--fs-base);
+  line-height: var(--lh-loose);
+}
+small,
+select {
+  color: var(--darkest-color);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-relaxed);
+}
+strong {
+  font-weight: bold;
+  color: var(--darkest-color);
+  font-size: var(--fs-base);
+  line-height: var(--lh-loose);
+}
+ul {
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  touch-action: manipulation;
+  outline: none;
+  cursor: pointer;
+  color: unset;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+.gradient-title {
+  background: linear-gradient(
+    90deg,
+    var(--primary-color) 0%,
+    var(--dark-color) 50%,
+    var(--darker-color) 100%
+  );
+  background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}

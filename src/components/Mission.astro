@@ -1,0 +1,82 @@
+---
+import TitleSection from "@components/TitleSection.astro";
+import MissionCard from "@components/MissionCard.svelte";
+import CustomIcon from "@components/CustomIcon.astro";
+import type { Mission } from "@interfaces/mission.interface";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const missionInformation: Mission[] = [
+  {
+    title: t("mission.one.title"),
+    description: t("mission.one.description"),
+    icon: "groups",
+    iconLabel: "Groups",
+  },
+  {
+    title: t("mission.two.title"),
+    description: t("mission.two.description"),
+    icon: "invert-colors",
+    iconLabel: "Quality",
+  },
+  {
+    title: t("mission.three.title"),
+    description: t("mission.three.description"),
+    icon: "engineering",
+    iconLabel: "Experience",
+  },
+];
+---
+
+<section class="mission-section">
+  <TitleSection title={t("mission.section.title")} />
+
+  <div class="mission-container">
+    {
+      missionInformation.map((mission, index) => (
+        <MissionCard
+          title={mission.title}
+          description={mission.description}
+          transitionDelay={`0.${index}s`}
+          client:load
+        >
+          <CustomIcon
+            slot="icon"
+            name={mission.icon}
+            label={mission.iconLabel}
+            width="70"
+            height="60"
+          />
+        </MissionCard>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .mission-section {
+    width: 100%;
+    height: 100%;
+    padding: 16px;
+    background-color: var(--lightest-color);
+  }
+  .mission-container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (width >= 768px) {
+    .mission-container {
+      max-width: 1800px;
+      margin: 0 auto;
+      justify-content: space-evenly;
+      align-items: stretch;
+      flex-direction: row;
+      gap: 32px;
+    }
+  }
+</style>

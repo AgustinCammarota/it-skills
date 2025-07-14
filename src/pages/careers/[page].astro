@@ -1,0 +1,47 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import fetchApi from "@lib/strapi";
+import type { Career } from "@interfaces/career.interface";
+import type { GetStaticPaths, Page } from "astro";
+import CareersSection from "@components/CareersSection.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const careers: Career[] = await fetchApi<Career[]>({
+    query: {
+      "fields[0]": "title",
+      "fields[1]": "description",
+      "fields[2]": "active",
+      "fields[3]": "date",
+      "fields[4]": "slug",
+      "fields[5]": "modality",
+      "fields[6]": "location",
+      locale: "es",
+      sort: "date:desc",
+    },
+    endpoint: "careers",
+    wrappedByKey: "data",
+  });
+
+  const filterCareers = (careers || []).filter((c) => c.active);
+
+  return paginate(filterCareers, { pageSize: 6 });
+};
+
+interface Props {
+  page: Page<Career>;
+}
+
+const { page } = Astro.props;
+---
+
+<Layout
+  title={t("careers.meta.title")}
+  description={t("careers.meta.description")}
+  keywords={t("careers.meta.keywords")}
+>
+  <CareersSection careers={page?.data ?? []} pagination={page?.url} />
+</Layout>

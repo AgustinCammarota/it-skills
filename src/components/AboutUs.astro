@@ -1,0 +1,72 @@
+---
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="about-us-section">
+  <div class="about-us-container">
+    <div class="about-us-content">
+      <h1>{t("about.us.title")}</h1>
+      <p>{t("about.us.description")}</p>
+    </div>
+    <div class="about-us-image">
+      <img src="/about-us.jpg" alt="About Us" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-us-section {
+    width: 100%;
+    padding: 60px 40px;
+    background: linear-gradient(
+      188deg,
+      rgb(141 176 194 / 100%) 0%,
+      rgb(237 243 245 / 100%) 45%
+    );
+  }
+
+  .about-us-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about-us-image {
+    width: 100%;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+  }
+
+  .about-us-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    h1 {
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+    }
+    p {
+      font-size: 16px;
+      text-align: center;
+    }
+  }
+
+  @media (width >= 768px) {
+    .about-us-container {
+      gap: 20px;
+    }
+  }
+</style>

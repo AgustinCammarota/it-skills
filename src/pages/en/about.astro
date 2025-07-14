@@ -1,0 +1,18 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import AboutUs from "@components/AboutUs.astro";
+import Founders from "@components/Founders.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<Layout
+  title={t("about.us.meta.title")}
+  description={t("about.us.meta.description")}
+  keywords={t("about.us.meta.keywords")}
+>
+  <Founders />
+  <AboutUs />
+</Layout>
