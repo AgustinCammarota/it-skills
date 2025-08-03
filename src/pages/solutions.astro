@@ -1,0 +1,218 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "@layouts/Layout.astro";
+import { getLangFromUrl, useTranslations } from "@i18n/utils";
+import TitleSection from "@components/TitleSection.astro";
+import CustomIcon from "@components/CustomIcon.astro";
+import AboutBanner from "@components/AboutBanner.astro";
+import CommonCard from "@components/CommonCard.svelte";
+import type { Mission } from "../interfaces/mission.interface";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const recruiting = await getCollection(
+  "recruiting",
+  ({ id }: { id: string }) => {
+    return id.startsWith(`${lang}/`);
+  },
+);
+
+const { data } = recruiting[0];
+const { Content } = await render(recruiting[0]);
+
+const missionInformation: Mission[] = [
+  {
+    title: t("mission.one.title"),
+    description: t("mission.one.description"),
+    icon: "groups",
+    iconLabel: "Groups",
+  },
+  {
+    title: t("mission.two.title"),
+    description: t("mission.two.description"),
+    icon: "invert-colors",
+    iconLabel: "Quality",
+  },
+  {
+    title: t("mission.three.title"),
+    description: t("mission.three.description"),
+    icon: "engineering",
+    iconLabel: "Experience",
+  },
+];
+---
+
+<Layout
+  title={t("services.meta.title")}
+  description={t("services.meta.description")}
+  keywords={t("services.meta.keywords")}
+>
+  <section class="services-section" id="servicesSection">
+    <section
+      class="services-section sections-with-background"
+      id="servicesSection"
+    >
+      <TitleSection title="Nuestros Servicios" primary />
+      <div class="services-options">
+        <button class="services-option">
+          <CustomIcon
+            name="group-search"
+            label="SELECCIÓN DE PERSONAL"
+            width="56"
+            height="56"
+          />
+          <span class="services-option-text">SELECCIÓN DE PERSONAL</span>
+        </button>
+
+        <button class="services-option">
+          <CustomIcon
+            name="clinical-notes"
+            label="EVALUACIONES PSICOLABORALES"
+            width="56"
+            height="56"
+          />
+          <span class="services-option-text">EVALUACIONES PSICOLABORALES</span>
+        </button>
+
+        <button class="services-option">
+          <CustomIcon name="school" label="MENTORING" width="56" height="56" />
+          <span class="services-option-text">MENTORING</span>
+        </button>
+
+        <button class="services-option">
+          <CustomIcon
+            name="cognition"
+            label="COACHING"
+            width="56"
+            height="56"
+          />
+          <span class="services-option-text">COACHING</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="recruiting-section" id="recruitingSection">
+      <AboutBanner
+        title={data.title}
+        href={data.href}
+        link={data.link}
+        imagePath={data.image.src}
+        altText={data.image.alt}
+        lang={lang}
+      >
+        <Content />
+      </AboutBanner>
+    </section>
+
+    <section
+      class="evaluations-section sections-with-background"
+      id="evaluationsSection"
+    >
+      <TitleSection title="Evaluaciones Psicolabolares" primary />
+
+      <div class="evaluations-container">
+        {
+          missionInformation.map((mission, index) => (
+            <CommonCard
+              title={mission.title}
+              description={mission.description}
+              transitionDelay={`0.${index}s`}
+              client:load
+            >
+              <CustomIcon
+                slot="icon"
+                name={mission.icon}
+                label={mission.iconLabel}
+                width="70"
+                height="60"
+              />
+            </CommonCard>
+          ))
+        }
+      </div>
+    </section>
+  </section>
+</Layout>
+
+<style>
+  .services-section {
+    width: 100%;
+    height: 100%;
+  }
+  .sections-with-background {
+    padding: 32px 16px 72px;
+    background-color: var(--lightest-color);
+  }
+  .services-options {
+    max-width: 250px;
+    margin: 0 auto;
+    display: grid;
+    place-content: center center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 24px;
+  }
+  .services-option {
+    width: 100%;
+    height: auto;
+    padding: 16px;
+    background-color: var(--dark-color);
+    color: var(--lightest-color);
+    border: 1px solid var(--lightest-color);
+    border-radius: 32px;
+    cursor: pointer;
+  }
+  .services-option-text {
+    padding: 12px 0;
+    display: block;
+    text-align: center;
+  }
+
+  .evaluations-container {
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (width >= 768px) {
+    .services-option {
+      will-change: transform;
+      transition: transform 0.2s ease;
+      transform: scale(1);
+    }
+    .services-option:hover {
+      transform: scale(1.05);
+      background-color: var(--lightest-color);
+      color: var(--dark-color);
+      border: 1px solid var(--dark-color);
+    }
+    .services-options {
+      max-width: 500px;
+      gap: 32px;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+  }
+
+  @media (width >= 1025px) {
+    .services-options {
+      max-width: 1800px;
+      place-items: stretch center;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+    }
+    .services-option {
+      max-width: 280px;
+    }
+    .evaluations-container {
+      max-width: 1800px;
+      margin: 0 auto;
+      justify-content: space-evenly;
+      align-items: stretch;
+      flex-direction: row;
+      gap: 32px;
+    }
+  }
+</style>

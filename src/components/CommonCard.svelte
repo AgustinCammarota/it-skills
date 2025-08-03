@@ -30,7 +30,7 @@
   });
 </script>
 
-<div class="mission-card"
+<div class="common-card"
      style="opacity: {opacity}; transition: opacity 1.5s ease {transitionDelay}, transform 0.2s ease;"
      bind:this={container}>
     <div class="icon-card">
@@ -47,7 +47,7 @@
 </div>
 
 <style>
-    .mission-card {
+    .common-card {
         flex: 1 1 300px;
         width: 100%;
         height: auto;
@@ -81,11 +81,11 @@
     }
 
     @media (width >= 768px) {
-        .mission-card {
+        .common-card {
             justify-content: start;
             transform: scale(1);
         }
-        .mission-card:hover {
+        .common-card:hover {
             transform: scale(1.05);
         }
     }

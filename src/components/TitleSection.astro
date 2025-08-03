@@ -23,17 +23,14 @@ const { title, primary = false }: Props = Astro.props;
     padding-bottom: 8px;
     text-wrap: wrap;
     text-align: center;
-    text-transform: capitalize;
+    text-transform: none;
     font-size: var(--fs-xxl);
     font-weight: 400;
   }
-  .title-primary {
-    color: var(--darkest-color);
-    border-bottom: 1px solid var(--darkest-color);
-  }
+  .title-primary,
   .title-secondary {
-    color: var(--primary-color);
-    border-bottom: 1px solid var(--primary-color);
+    color: var(--dark-color);
+    border-bottom: 1px solid var(--dark-color);
   }
 
   @media (width >= 768px) {

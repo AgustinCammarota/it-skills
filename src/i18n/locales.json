@@ -8,11 +8,6 @@
     "navbar.link.solutions": "Servicios",
     "navbar.link.careers": "Posiciones",
     "navbar.link.contact": "Contacto",
-    "about.banner.title": "¿Buscás contratar talento de primer nivel en todo el mundo?",
-    "about.banner.image": "Nuestro equipo",
-    "about.banner.subtitle": "Nosotros te ayudamos",
-    "about.banner.description": "Somos una agencia boutique de Recursos Humanos conformada por un equipo interdisciplinario de profesionales de tecnología, psicólogos, y coaches. Nos especializamos en la adquisición de talento, creando conexiones significativas entre empresas y personas en busca de las mejores oportunidades.",
-    "about.banner.link": "Más información",
     "about.meta.title": "IT Skills | Inicio",
     "about.meta.description": "Encontrá el mejor talento IT en Buenos Aires. Nos especializamos en selección de personal IT para empresas que buscan profesionales altamente calificados.",
     "about.meta.keywords": "selección IT, empleos IT, Buenos Aires, desarrolladores, talento tecnológico, habilidades IT, Argentina",
@@ -80,7 +75,10 @@
     "mission.two.title": "Qué diferencia a IT Skills",
     "mission.two.description": "Nos enfocamos en la calidad por sobre la cantidad. Trabajamos con un número limitado de búsquedas para poder dedicarnos por completo a cada proceso. Cuando trabajás con IT Skills, encontrás un verdadero aliado que te brindará un acompañamiento cercano en cada paso.",
     "mission.three.title": "Amplia experiencia en el mercado",
-    "mission.three.description": "Nuestra amplia experiencia brinda una perspectiva única que aporta valor a las decisiones estratégicas. Te acompañamos con asesoramiento experto para que tomes la mejor decisión para tu equipo y los objetivos de tu negocio."
+    "mission.three.description": "Nuestra amplia experiencia brinda una perspectiva única que aporta valor a las decisiones estratégicas. Te acompañamos con asesoramiento experto para que tomes la mejor decisión para tu equipo y los objetivos de tu negocio.",
+    "services.meta.title": "Soluciones y Servicios IT | Home",
+    "services.meta.description": "Descubrí nuestras soluciones IT a medida para potenciar el rendimiento empresarial. Ofrecemos desarrollo de software, servicios en la nube y consultoría tecnológica en Buenos Aires y toda Argentina.",
+    "services.meta.keywords": "soluciones IT, servicios tecnológicos, desarrollo de software, computación en la nube, consultoría IT, transformación digital, Buenos Aires, Argentina"
   },
   "en": {
     "navbar.menu.option": "Menu",
@@ -91,11 +89,6 @@
     "navbar.link.solutions": "Services",
     "navbar.link.careers": "Careers",
     "navbar.link.contact": "Contact",
-    "about.banner.title": "Looking to hire top-tier talent worldwide?",
-    "about.banner.image": "Our team",
-    "about.banner.subtitle": "We’ve got you covered",
-    "about.banner.description": "We are a boutique Human Resources agency conformed by an interdisciplinary team of technology professionals, psychologists, and coaches. We specialize in talent acquisition, creating meaningful connections between companies and individuals seeking the best opportunities.",
-    "about.banner.link": "Learn more",
     "about.meta.title": "IT Skills | Home",
     "about.meta.description": "Discover top IT talent in Buenos Aires. We specialize in IT recruitment for companies seeking highly skilled professionals.",
     "about.meta.keywords": "IT recruitment, IT jobs, Buenos Aires, software developers, tech talent, IT skills, Argentina",
@@ -163,6 +156,9 @@
     "mission.two.title": "What sets IT Skills apart",
     "mission.two.description": "We focus on quality over quantity. We take on a limited number of searches at a time, allowing us to fully dedicate ourselves to each process. When you work with IT Skills, you’ll find a true partner, offering close support every step of the way.",
     "mission.three.title": "Long-standing experience in the industry",
-    "mission.three.description": "Our long-standing experience gives us a unique perspective that adds value to strategic decisions. We support you with expert guidance to ensure you make the right decision for your team and business goals."
+    "mission.three.description": "Our long-standing experience gives us a unique perspective that adds value to strategic decisions. We support you with expert guidance to ensure you make the right decision for your team and business goals.",
+    "services.meta.title": "IT Solutions & Services | Home",
+    "services.meta.description": "Explore our custom IT solutions designed to boost business performance. We offer tailored software development, cloud services, and technology consulting for companies in Buenos Aires and beyond.",
+    "services.meta.keywords": "IT solutions, technology services, software development, cloud computing, IT consulting, digital transformation, Buenos Aires, Argentina"
   }
 }

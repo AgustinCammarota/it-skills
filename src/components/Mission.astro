@@ -1,6 +1,6 @@
 ---
 import TitleSection from "@components/TitleSection.astro";
-import MissionCard from "@components/MissionCard.svelte";
+import CommonCard from "@components/CommonCard.svelte";
 import CustomIcon from "@components/CustomIcon.astro";
 import type { Mission } from "@interfaces/mission.interface";
 import { getLangFromUrl, useTranslations } from "@i18n/utils";
@@ -36,7 +36,7 @@ const missionInformation: Mission[] = [
   <div class="mission-container">
     {
       missionInformation.map((mission, index) => (
-        <MissionCard
+        <CommonCard
           title={mission.title}
           description={mission.description}
           transitionDelay={`0.${index}s`}
@@ -49,7 +49,7 @@ const missionInformation: Mission[] = [
             width="70"
             height="60"
           />
-        </MissionCard>
+        </CommonCard>
       ))
     }
   </div>

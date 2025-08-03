@@ -1,14 +1,34 @@
 ---
+import { getCollection, render } from "astro:content";
+import { getLangFromUrl } from "@i18n/utils";
 import AboutBanner from "@components/AboutBanner.astro";
 import Highlights from "@components/Highlights.svelte";
 import Companies from "@components/Companies.astro";
 import Mission from "@components/Mission.astro";
 
 const currentUrl: URL = Astro.url;
+const lang = getLangFromUrl(currentUrl);
+
+const about = await getCollection("about", ({ id }: { id: string }) => {
+  return id.startsWith(`${lang}/`);
+});
+
+const { data } = about[0];
+const { Content } = await render(about[0]);
 ---
 
 <section class="about-section">
-  <AboutBanner />
+  <AboutBanner
+    title={data.title}
+    subtitle={data.subtitle}
+    href={data.href}
+    link={data.link}
+    imagePath={data.image.src}
+    altText={data.image.alt}
+    lang={lang}
+  >
+    <Content />
+  </AboutBanner>
   <Highlights currentUrl={currentUrl} client:load />
   <Mission />
   <Companies />
